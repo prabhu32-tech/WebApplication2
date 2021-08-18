@@ -21,6 +21,9 @@ namespace WebApplication2.Controllers
             var subDomain = objRepo.GetSubdomain();
             var timeSheet = objRepo.GetTimeSheet();
             var timeSheetType = objRepo.GetTimeSheetType();
+            var pracType = objRepo.GetPracticeType();
+            var recruiter = objRepo.GetRecruiter();
+            var invoiceGP = objRepo.GetInvoiceGroup();
 
             var empVM = new ProjectAddEditViewModel
             {
@@ -30,7 +33,10 @@ namespace WebApplication2.Controllers
               ProjType= projType,
               SubDomain= subDomain,
               TimeSheet= timeSheet,
-                TimeSheetType= timeSheetType
+                TimeSheetType= timeSheetType,
+                PracType= pracType,
+                Recruiter=recruiter,
+                InvoiceGP= invoiceGP
             };
             return View(empVM);
         }

@@ -170,5 +170,69 @@ namespace WebApplication2.Repository
             return getComps;
         }
 
+        public List<AppRefData> GetPracticeType()
+        {
+            List<AppRefData> getComps = new List<AppRefData>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_PracticeType_Prabhu", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                getComps.Add(
+                    new AppRefData { KeyID = Convert.ToInt32(reader["KeyID"]), KeyName = reader["KeyName"].ToString() }
+                    );
+            }
+            reader.Close();
+
+            con.Close();
+            return getComps;
+        }
+
+        public List<AppRefData> GetRecruiter()
+        {
+            List<AppRefData> getComps = new List<AppRefData>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_Recruiter_Prabhu", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                getComps.Add(
+                    new AppRefData { KeyID = Convert.ToInt32(reader["RecruiterId"]), KeyName = reader["Recruiter"].ToString() }
+                    );
+            }
+            reader.Close();
+
+            con.Close();
+            return getComps;
+        }
+
+        public List<AppRefData> GetInvoiceGroup()
+        {
+            List<AppRefData> getComps = new List<AppRefData>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_InvoiceGroup_Prabhu", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                getComps.Add(
+                    new AppRefData { KeyID = Convert.ToInt32(reader["KeyID"]), KeyName = reader["InvoiceGroup"].ToString() }
+                    );
+            }
+            reader.Close();
+
+            con.Close();
+            return getComps;
+        }
+
+
     }
 }

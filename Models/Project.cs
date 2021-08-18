@@ -50,10 +50,13 @@ namespace WebApplication2.Models
         [Display(Name = "TimeSheet Type ")]
         public string TimesheetType { get; set; }
 
+        [Display(Name = "Practice Type ")]
         public string PracticeType { get; set; }
 
         public string Recruiter { get; set; }
 
+
+        [Display(Name = "Invoice Group ")]
         public string InvoiceGroup { get; set; }
 
 

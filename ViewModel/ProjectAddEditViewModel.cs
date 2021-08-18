@@ -20,5 +20,10 @@ namespace WebApplication2.ViewModel
         public List<AppRefData> SubDomain { get; set; }
         public List<AppRefData> TimeSheet { get; set; }
         public List<AppRefData> TimeSheetType { get; set; }
+        public List<AppRefData> PracType { get; set; }
+
+        public List<AppRefData> Recruiter { get; set; }
+        public List<AppRefData> InvoiceGP { get; set; }
+
     }
 }
