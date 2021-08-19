@@ -9,11 +9,7 @@ namespace WebApplication2.Models
     {
         public int KeyID { get; set; }
         public string KeyName { get; set; }
-        public string Customer_Name { get; set; }
-
-        public string Project_Name { get; set; }
-
-        public string Project_Id { get; set; }
-        public List<AppRefData> ProjectInfo { get; set; }
+        
+       
     }
 }

@@ -76,6 +76,10 @@ namespace WebApplication2.Models
         [Display(Name = "Invoice Group ")]
         public string InvoiceGroup { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese type Yes or No   ")]
+            
+         public string IsVmsTimeSheet { get; set; }
+
 
     }
 }

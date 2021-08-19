@@ -235,58 +235,63 @@ namespace WebApplication2.Repository
             return getComps;
         }
 
-        public ActionResult InsertUserDetails()
-        {
-            AppRefData objuser = new AppRefData();
-            DataSet ds = new DataSet();            
-            {
-                using (SqlCommand cmd = new SqlCommand("Project_DetailsPrabhu_Training", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@status", "GET");
-                    con.Open();
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    da.Fill(ds);
-                    List<AppRefData> userlist = new List<AppRefData>();
-                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                    {
-                        AppRefData uobj = new AppRefData();
-                        uobj.Customer_Name = ds.Tables[0].Rows[i]["Customer_Name"].ToString();
-                        uobj.Project_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString();
-                        uobj.Project_Id = ds.Tables[0].Rows[i]["Project_Id"].ToString();
+        //public ActionResult InsertUserDetails()
+        //{
+        //    AppRefData objuser = new AppRefData();
+        //    DataSet ds = new DataSet();            
+        //    {
+        //        using (SqlCommand cmd = new SqlCommand("Project_DetailsPrabhu_Training", con))
+        //        {
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@status", "GET");
+        //            con.Open();
+        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //            da.Fill(ds);
+        //            List<AppRefData> userlist = new List<AppRefData>();
+        //            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //            {
+        //                AppRefData uobj = new AppRefData();
+        //                uobj.Customer_Name = ds.Tables[0].Rows[i]["Customer_Name"].ToString();
+        //                uobj.Project_Name = ds.Tables[0].Rows[i]["Project_Name"].ToString();
+        //                uobj.Project_Id = ds.Tables[0].Rows[i]["Project_Id"].ToString();
                         
-                        userlist.Add(uobj);
-                    }
-                    objuser.ProjectInfo = userlist;
-                }
-                con.Close();
-            }
-            return View(objuser);
-        }
-        [HttpPost]
-        public bool AddProject(ProjectAddEditViewModel obj)
-        {
+        //                userlist.Add(uobj);
+        //            }
+        //            objuser.ProjectInfo = userlist;
+        //        }
+        //        con.Close();
+        //    }
+        //    return View(objuser);
+        //}
+       // [HttpPost]
 
-            Connection();
-            SqlCommand com = new SqlCommand("Project_DetailsPrabhu_Training", con);
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@Customer_Name", obj.Customer_Name);
-            com.Parameters.AddWithValue("@City", obj.Project_Name);
-            com.Parameters.AddWithValue("@Address", obj.Project_Id);
-            con.Open();
-            int i = com.ExecuteNonQuery();
-            con.Close();
-            if (i >= 1)
-            {
 
-                return true;
 
-            }
-            else
-            {
+        //public bool AddProject()
+        //{
+        //    AppRefData obj = new AppRefData();
+        //    DataSet ds = new DataSet();
+        //    Connection();
+        //    SqlCommand com = new SqlCommand("Project_DetailsPrabhu_Training", con);
+        //    com.CommandType = CommandType.StoredProcedure;
+        //    com.Parameters.AddWithValue("@Customer_Name", obj.Customer_Name);
+        //    com.Parameters.AddWithValue("@Project_Name", obj.Project_Name);
+        //    com.Parameters.AddWithValue("@Project_Id", obj.Project_Id);
+        //    com.Parameters.AddWithValue("@status", "INSERT");
+        //    con.Open();
+        //    int i = com.ExecuteNonQuery();
+        //    con.Close();
+        //    if (i >= 1)
+        //    {
 
-                return false;
-            }
-        }
+        //        return true;
+
+        //    }
+        //    else
+        //    {
+
+        //        return false;
+        //    }
+        //}
     }
 }
