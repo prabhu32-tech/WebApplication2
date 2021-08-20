@@ -169,6 +169,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Home\Table.cshtml" />
+    <Content Include="Views\Project\Table.cshtml" />
+    <Content Include="Views\Project\GetList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

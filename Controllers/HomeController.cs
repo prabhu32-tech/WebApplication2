@@ -26,11 +26,6 @@ namespace WebApplication2.Controllers
 
             return View();
         }
-        public ActionResult Table()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

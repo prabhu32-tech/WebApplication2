@@ -55,7 +55,7 @@ namespace WebApplication2.Controllers
             };
             return View(empVM);
         }
-        public bool Save(ProjectAddEditViewModel model)
+        public ActionResult Table(ProjectAddEditViewModel model)
         {
             Connection();
             SqlCommand com = new SqlCommand("Project_DetailsPrabhu_Training", con);
@@ -84,12 +84,18 @@ namespace WebApplication2.Controllers
             con.Close();
             if (i >= 1)
             {
-                return true;
+                return View();
             }
             else
             {
-                return false;
+                return View();
             }
+        }
+        public ActionResult GetList()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
         }
     }
 }
