@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Models.Project>
+﻿@model IEnumerable<WebApplication2.Models.AppRefData>
 
 @{
     ViewBag.Title = "GetList";
@@ -7,9 +7,9 @@
 <h2>GetList</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Index", "Project")
 </p>
-<table class="table">
+<table id="#myTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Customer_Name)
@@ -133,3 +133,9 @@
 }
 
 </table>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+   
+</script>

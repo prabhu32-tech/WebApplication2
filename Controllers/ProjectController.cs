@@ -13,6 +13,14 @@ namespace WebApplication2.Controllers
 {
     public class ProjectController : Controller
     {
+
+        Common repository = null;
+        public ProjectController()
+        {
+            repository = new Common();
+        }
+
+
         private SqlConnection con;
 
         private void Connection()
@@ -93,9 +101,10 @@ namespace WebApplication2.Controllers
         }
         public ActionResult GetList()
         {
-            ViewBag.Message = "Your contact page.";
+            var result = repository.GetAppRefData(1800);
 
-            return View();
+
+            return View(result);
         }
     }
 }
