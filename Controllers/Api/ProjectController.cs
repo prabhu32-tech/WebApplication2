@@ -10,12 +10,22 @@ namespace WebApplication2.Controllers.Api
 {
     public class ProjectController : ApiController
     {
-        [HttpGet]
-        public IHttpActionResult GetProjects()
+        [HttpPost]
+        [Route("Project/projectStatus")]
+        public IHttpActionResult AddProject(ProjectController pc)
         {
-            var pj = new Common().GetAppRefData(1800);
+            return Ok();
+        }
 
-            return Ok(pj);
+
+
+        [HttpGet]
+        [Route("Project/GetAppRefDataPrabhu")]
+        public IHttpActionResult Status(int parentId)
+        {
+            Common objRepo = new Common();
+            var appRefStatus = objRepo.GetAppRefData(parentId);
+            return Ok(appRefStatus);
 
         }
 

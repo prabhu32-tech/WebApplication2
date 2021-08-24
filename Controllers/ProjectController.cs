@@ -106,5 +106,11 @@ namespace WebApplication2.Controllers
 
             return View(result);
         }
+
+        public ActionResult AddProject()
+        {
+            return View();
+        }
+             
     }
 }
