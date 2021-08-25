@@ -10,7 +10,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>Customer Name</label>
-            <input type="text" id="empName" class="form-control" />
+            <input type="text" id="custName" class="form-control" />
         </div>
 
         @*<div class="form-group">
@@ -126,7 +126,17 @@
 
     <script>
 $(document).ready(function(){
-            BindProjectTypeList();
+    BindProjectTypeList();
+    BindLocationGroup();
+    BindProjectCategory();
+    BindProjectType();
+    /*BindSubDomain();*/
+    BindTimeSheet();
+    BindTimeSheetType();
+    BindPracticeType();
+    BindRecruiter();
+    BindInvoiceGroup();
+
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
@@ -141,17 +151,17 @@ $(document).ready(function(){
         function SaveData() {
             let vm = {
                 Name: "",
-                StartDate:0,
+                StartDate:"",
                 Projectstatus: 0,
-                EndDate:0,
-
+                EndDate:"",
+                LocationGroup:"",
             };
-            vm.Name = $("#empName").val();
+            vm.Name = $("#custName").val();
             /* vm.CompanyId = $("#workingCompany").val();*/
             /*vm.Projectstatus = $("#ddlProjectStatus").val();*/
             vm.StartDate = $("#ddlSatartDate").val();
             vm.EndDate = $("#ddlEndDate").val();
-
+            vm.LocationGroup = $("#ddlLocationGroup").val();
             console.log(vm);
             $.ajax({
                 method: "POST",
@@ -166,7 +176,7 @@ $(document).ready(function(){
         function BindProjectTypeList() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetAppRefDataPrabhu?parentId=1800",
+                url: "/Project/getStatus_Training_Prabhu?parentId=1800",
                 success: function (data) {
                     console.log(data);
 
@@ -174,28 +184,106 @@ $(document).ready(function(){
                 },
                 error: function () { }
             })
-
-            @*$.ajax({
-            type: "GET",
-            url: '@Url.Action("GetAppRefData", "Project")',
-            dataType: "json",
-            success: function (result) {
-                strOption_ProjectStatus = '<option value="-1">All</option>';
-                $.each(result, function (i) {
-                    if (result[i].KeyID == 1801) {
-                        strOption_ProjectStatus = strOption_ProjectStatus + '<option value="' + result[i].KeyID + '" selected>' + result[i].KeyName + '</option>';
-                    } else {
-                        strOption_ProjectStatus = strOption_ProjectStatus + '<option value="' + result[i].KeyID + '">' + result[i].KeyName + '</option>';
-                    }
-                });
-                $('#ddlProjectStatus').empty().append(strOption_ProjectStatus);
-                OnSuccess();
-            },
-            error: function (errorResult) {
-                alert(errorResult);
-                return false;
-            }
-        });*@
         }
+        function BindLocationGroup() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/Get_LocationGroup_Prabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+
+        }
+        function BindProjectCategory() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetProjectCatPrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+
+        }
+        function BindProjectType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetProjectTypePrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+
+        }
+        function BindTimeSheet() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetTimeSheetPrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+        }
+        function BindTimeSheetType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetTimeSheetTypePrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+        }
+        function BindPracticeType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetPracticeTypePrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+        }
+        function BindRecruiter() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetRecruiterPrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+        }
+        function BindInvoiceGroup() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetInvoiceGroupPrabhu",
+                success: function (data) {
+                    console.log(data);
+
+                    //ddlLocationGroup
+                },
+                error: function () { }
+            })
+        }
+
     </script>
 }
