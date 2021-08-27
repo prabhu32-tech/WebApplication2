@@ -10,17 +10,17 @@ namespace WebApplication2.Controllers.Api
 {
     public class ProjectController : ApiController
     {
-        [HttpPost]
-        [Route("Project/AddProject")]
-        public IHttpActionResult AddProject(ProjectController pc)
-        {
-            return Ok();
-        }
+        //[HttpPost]
+        //[Route("Project/AddProject")]
+        //public IHttpActionResult AddProject(ProjectController pc)
+        //{
+        //    return Ok();
+        //}
 
 
 
         [HttpGet]
-        [Route("Project/GetStatusTrainingPrabhu")]
+        [Route("Project/GetStatusTraining")]
         public IHttpActionResult Status(int parentId)
         {
             Common objRepo = new Common();
@@ -29,7 +29,7 @@ namespace WebApplication2.Controllers.Api
 
         }
         [HttpGet]
-        [Route("Project/GetLocationGroupPrabhu")]
+        [Route("Project/GetLocationGroup")]
         public IHttpActionResult LocGroupList()
         {
             Common objRepo = new Common();
@@ -38,7 +38,7 @@ namespace WebApplication2.Controllers.Api
 
         }
         [HttpGet]
-        [Route("Project/GetProjectCatPrabhu")]
+        [Route("Project/GetProjectCat")]
         public IHttpActionResult ProjectCatList()
         {
             Common objRepo = new Common();
@@ -46,7 +46,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(projCat);
         }
         [HttpGet]
-        [Route("Project/GetProjectTypePrabhu")]
+        [Route("Project/GetProjectType")]
         public IHttpActionResult ProjectTypeList()
         {
             Common objRepo = new Common();
@@ -54,7 +54,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(projType);
         }
         [HttpGet]
-        [Route("Project/GetSubDomainePrabhu")]
+        [Route("Project/GetSubDomain")]
         public IHttpActionResult SubDomainList()
         {
             Common objRepo = new Common();
@@ -62,7 +62,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(subDomain);
         }
         [HttpGet]
-        [Route("Project/GetTimeSheetPrabhu")]
+        [Route("Project/GetTimeSheet")]
         public IHttpActionResult TimeSheetList()
         {
             Common objRepo = new Common();
@@ -70,7 +70,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(timeSheet);
         }
         [HttpGet]
-        [Route("Project/GetTimeSheetTypePrabhu")]
+        [Route("Project/GetTimeSheetType")]
         public IHttpActionResult TimeSheeTypetList()
         {
             Common objRepo = new Common();
@@ -78,7 +78,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(timeSheetType);
         }
         [HttpGet]
-        [Route("Project/GetPracticeTypePrabhu")]
+        [Route("Project/GetPracticeType")]
         public IHttpActionResult PracticeTypeList()
         {
             Common objRepo = new Common();
@@ -86,7 +86,7 @@ namespace WebApplication2.Controllers.Api
             return Ok(pracType);
         }
         [HttpGet]
-        [Route("Project/GetRecruiterPrabhu")]
+        [Route("Project/GetRecruiter")]
         public IHttpActionResult RecruiterList()
         {
             Common objRepo = new Common();
@@ -94,12 +94,20 @@ namespace WebApplication2.Controllers.Api
             return Ok(recruiter);
         }
         [HttpGet]
-        [Route("Project/GetInvoiceGroupPrabhu")]
+        [Route("Project/GetInvoiceGroup")]
         public IHttpActionResult InvoiceGroupList()
         {
             Common objRepo = new Common();
             var invoiceGP = objRepo.GetInvoiceGroup();
             return Ok(invoiceGP);
+        }
+        [HttpGet]
+        [Route("Project/GetAllDetails")]
+        public IHttpActionResult ProjectDetailsList()
+        {
+            Common objRepo = new Common();
+            var projects = objRepo.GetProjectList();
+            return Ok(projects);
         }
     }
 }

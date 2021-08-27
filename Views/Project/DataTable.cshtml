@@ -1,0 +1,123 @@
+﻿
+@{ ViewBag.Title = "DataTable"; }
+
+<h2>Projects List</h2>
+
+<table id="prjList" class="table-bordered table-striped" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Project Status</th>
+            <th>CustomerName</th>
+            <th>ProjectName</th>
+            <th>ProjectId</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>ProjectStatus</th>
+            <th>LocationGroup</th>
+            <th>StateName</th>
+            <th>SalesPersonName</th>
+            <th>ProjectCategory</th>
+            <th>ProjectType</th>
+            <th>SubDomain</th>
+            <th>TimeSheetRepresentative</th>
+            <th>TimesheetType</th>
+            <th>PracticeType</th>
+            <th>Recruiter</th>
+            <th>InvoiceGroup</th>
+            <th>IsVmsTimeSheet</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts{
+    <script>$(document).ready(function () {
+
+            //$("#prjList").DataTable({
+            //    ajax: {
+            //        url: "/Project/GetStatusTrainingPrabhu?parentId=1800",
+            //        dataSrc:""
+            //    },
+            //    columns: [
+            //        {
+            //            data: "keyID"
+            //        },
+            //        {
+            //            data: "keyName",
+            //            render: function (data) { return "" + data }
+            //        }]
+            //});
+    $("#prjList").DataTable({
+        ajax: {
+            url: "Project/GetAllDetails",
+            dataSrc: ""
+        },
+        columns: [
+            {
+                data: "keyID"
+            },
+            {
+                data: "keyName",
+                render: function (data) { return "" + data }
+            },
+            {
+                data:"Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            }, {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            },
+            {
+                data: "Name"
+            }
+        ]
+    });
+
+        });</script>
+}
+

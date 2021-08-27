@@ -234,7 +234,23 @@ namespace WebApplication2.Repository
             con.Close();
             return getComps;
         }
-
+        public IList<Project> GetProjectList()
+        {
+            IList<Project> SelectListNew = new List<Project>();
+            using (SqlConnection con = new SqlConnection())
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Get_Project_DetailsPrabhu_Training", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                }
+                con.Close();
+            }
+            return SelectListNew;
+        }
       
     }
 }

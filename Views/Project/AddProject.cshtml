@@ -9,45 +9,34 @@
 <form>
     <div class="col-md-6">
         <div class="form-group">
-            <label>Customer Name</label>
+            <label for="custName">Customer Name</label>
             <input type="text" id="custName" class="form-control" />
         </div>
 
-        @*<div class="form-group">
-            <label>Working company</label>
-            <select id="workingCompany" class="form-control">
-                <option value="1">Compunnel India</option>
-                <option value="2">Compunnel Healthcare</option>
-                <option value="3">Logix India</option>
-            </select>
-        </div>*@
+        
         <div class="form-group">
-            <label>Project Name</label>
-            <select id="ddlProjectName" class="form-control">
-            </select>
+            <label for="txtProjectName">Project Name</label>
+            <input type="text" id="txtProjectName" class="form-control" />
         </div>
         <div class="form-group">
-            <label>Project Id</label>
-            <select id="ddlProjectId" class="form-control">
-            </select>
+            <label for="txtProjectID">Project Id</label>
+            <input type="text" id="txtProjectID" class="form-control" />
         </div>
 
         <div class="form-group">
-            <label>Start Date</label>
-            <input type="date" id="ddlSatartDate" class="form-control">
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control">
 
         </div>
         <div class="form-group">
             <label>End Date</label>
-            <input type="date" id="ddlEndDate" class="form-control">
+            <input type="date" id="endDate" class="form-control">
 
         </div>
         <div class="form-group">
             <label>Project Status</label>
             <select id="ddlProjectStatus" class="form-control">
-                <option value="-1">Select Status</option>
-                <option value="1">Active</option>
-                <option value="2">InActive</option>
+                
             </select>
         </div>
         <div class="form-group">
@@ -57,13 +46,13 @@
         </div>
         <div class="form-group">
             <label>State Name </label>
-            <select id="ddlStateName" class="form-control">
-            </select>
+            <input type="text" id="txtStateName" class="form-control">
+            
         </div>
         <div class="form-group">
             <label>SalesPerson Name </label>
-            <select id="ddlSalesPersonName" class="form-control">
-            </select>
+            <input type="text" id="txtSalesPersonName" class="form-control">
+           
         </div>
     </div>
     <div class="form-group">
@@ -74,10 +63,7 @@
     <div class="form-group">
         <label>Project Type </label>
         <select id="ddlProjectType" class="form-control">
-            <option value="-1">Select Project Type</option>
-            <option value="0">IT</option>
-            <option value="1">Non-IT</option>
-            <option value="2">Health Care</option>
+            
         </select>
     </div>
     <div class="form-group">
@@ -111,12 +97,9 @@
         </select>
     </div>
     <div class="form-group">
-        <label>IsVmsTimeSheet</label>
-        <select id="ddlIsVmsTimeSheet" class="form-control">
-            <option value="-1"></option>
-            <option value="1">Yes</option>
-            <option value="2">No</option>
-        </select>
+        <label for="IsVmsTimeSheet">IsVmsTimeSheet</label>
+        <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
+        <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>       
     </div>
 
     <input type="button" class="btn-primary" value="Save" id="btnSave" />
@@ -126,11 +109,11 @@
 
     <script>
 $(document).ready(function(){
-    BindProjectTypeList();
+    BindProjectStatusList();
     BindLocationGroup();
     BindProjectCategory();
     BindProjectType();
-    /*BindSubDomain();*/
+    BindSubDomain();
     BindTimeSheet();
     BindTimeSheetType();
     BindPracticeType();
@@ -144,56 +127,174 @@ $(document).ready(function(){
 
             });
         });
+        function clearMessageJQ(ele) {
+            $(ele).siblings('span.error').remove();
+        }
+
+        function addErrorMessageJQ(ele, msg) {
+            const errorCtrl = $('<span />').addClass('error').html(msg);
+            $(ele).closest('div').append(errorCtrl);
+        }
+
+        function CustNameValidation() {
+            let flag = true;
+            const ele = $('#custName');
+            clearMessageJQ(ele)
+            const custName = $('#custName').val();
+
+            if (custName === "" || custName.length <= 2 || !isNaN(custName.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the customer Name');
+                console.log(custName);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjectNameValidation() {
+            let flag = true;
+            const ele = $('#txtProjectName');
+            clearMessageJQ(ele)
+            const prjName = $('#txtProjectName').val();
+
+            if (prjName === "" || prjName.length <= 2 || !isNaN(prjName.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Name');
+                console.log(prjName);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjectIdValidation() {
+            let flag = true;
+            const ele = $('#txtProjectID');
+            clearMessageJQ(ele)
+            const prjId = $('#txtProjectID').val();
+
+            if (prjId === "" || prjId.length <= 2 || !isNaN(prjId.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Id');
+                console.log(prjId);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function StartDateValidation() {
+            let flag = true;
+            const ele = $('#startDate');
+            clearMessageJQ(ele)
+            const stDate = $('#startDate').val();
+            if (stDate == "") {
+                addErrorMessageJQ(ele, 'Please fill the Project Start Date');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+
 
         function IsValidate() {
-            return true;
+        //    let _custName = $("#custName").val();
+        //    if (_custName == "") { alert("Please fill the customer Name") }                                             //validations are missing
+   
+            let flag = true;
+
+            if (!CustNameValidation()) {
+                flag = false;
+            }
+            if (!ProjectNameValidation()) {
+                flag = false;
+            }
+            if (!ProjectIdValidation()) {
+                flag = false;
+            }
+            if (!StartDateValidation()) {
+                flag = false;
+            }
+
+            return flag;
         }
         function SaveData() {
-            let vm = {
+            let Project = {
                 Name: "",
-                StartDate:"",
+                ProjectName: "",
+                ProjectId: "",
                 Projectstatus: 0,
+                StartDate:"",                
                 EndDate:"",
-                LocationGroup:"",
+                LocationGroup: "",
+                StateName: "",
+                SalsePersonName: "",
+                ProjectCategory: "",
+                ProjectType: "",
+                SubDomain: "",
+                TimeSheetRepresentative: "",
+                TimesheetType: "",
+                PracticeType: "",
+                Recruiter: "",
+                InvoiceGroup: "",
+                IsVmsTimeSheet:"",
             };
-            vm.Name = $("#custName").val();
-            /* vm.CompanyId = $("#workingCompany").val();*/
-            /*vm.Projectstatus = $("#ddlProjectStatus").val();*/
-            vm.StartDate = $("#ddlSatartDate").val();
-            vm.EndDate = $("#ddlEndDate").val();
-            vm.LocationGroup = $("#ddlLocationGroup").val();
-            console.log(vm);
+            Project.Name = $("#custName").val();
+            Project.ProjectName = $("#txtProjectName").val();
+            Project.ProjectId = $("#txtProjectID").val();
+            Project.Projectstatus = $("#ddlProjectStatus :selected").text();
+            Project.StartDate = $("#startDate ").val();
+            Project.EndDate = $("#endDate ").val();
+            Project.LocationGroup = $("#ddlLocationGroup").text();
+            Project.StateName = $("#txtStateName").val();
+            Project.SalsePersonName = $("#txtSalesPersonName").val();
+            Project.ProjectCategory = $("#ddlProjectCategory :selected").text();
+            Project.ProjectType = $("#ddlProjectType :selected").text();
+            Project.SubDomain = $("#ddlSubDomain :selected").text();
+            Project.TimeSheetRepresentative = $("#ddlTimeSheetRepresentative :selected").text();
+            Project.TimesheetType = $("#ddlTimesheetType :selected").text();
+            Project.PracticeType = $("#ddlPracticeType :selected").text();
+            Project.Recruiter = $("#ddlRecruiter :selected").text();
+            Project.InvoiceGroup = $("#ddlInvoiceGroup :selected").text();
+            Project.IsVmsTimeSheet = $("input[name='IsVmsTimeSheet']:checked").val();
+            console.log(Project);
             $.ajax({
                 method: "POST",
                 url: "/Project/AddProject",
                 dataType: "json",
-                data: vm,
+                data: Project,
                 success: function () { },
                 error: function () {}
             });
         }
 
-        function BindProjectTypeList() {
+        function BindProjectStatusList() {
             $.ajax({
                 method: "GET",
-                url: "/Project/getStatus_Training_Prabhu?parentId=1800",
+                url: "/Project/GetStatusTraining?parentId=1800",
                 success: function (data) {
-                    console.log(data);
-
-                    //ddlProjectType
+                    //console.log(data);
+                   
+                    $(data).each(function () {
+                        $("#ddlProjectStatus").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
+
                 error: function () { }
-            })
+            });
         }
         function BindLocationGroup() {
             $.ajax({
                 method: "GET",
-                url: "/Project/Get_LocationGroup_Prabhu",
+                url: "/Project/GetLocationGroup",
                 success: function (data) {
                     console.log(data);
-
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlLocationGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
+                   
+                
                 error: function () { }
             })
 
@@ -201,11 +302,13 @@ $(document).ready(function(){
         function BindProjectCategory() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetProjectCatPrabhu",
+                url: "/Project/GetProjectCat",
                 success: function (data) {
                     console.log(data);
-
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlProjectCategory").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                    
                 },
                 error: function () { }
             })
@@ -214,11 +317,29 @@ $(document).ready(function(){
         function BindProjectType() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetProjectTypePrabhu",
+                url: "/Project/GetProjectType",
                 success: function (data) {
                     console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                    
+                },
+                error: function () { }
+            })
 
-                    //ddlLocationGroup
+        }
+
+        function BindSubDomain() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetSubDomain",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlSubDomain").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+
                 },
                 error: function () { }
             })
@@ -227,11 +348,13 @@ $(document).ready(function(){
         function BindTimeSheet() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetTimeSheetPrabhu",
+                url: "/Project/GetTimeSheet",
                 success: function (data) {
                     console.log(data);
-
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlTimeSheetRepresentative").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                  
                 },
                 error: function () { }
             })
@@ -239,11 +362,13 @@ $(document).ready(function(){
         function BindTimeSheetType() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetTimeSheetTypePrabhu",
+                url: "/Project/GetTimeSheetType",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlTimesheetType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
                 error: function () { }
             })
@@ -251,11 +376,13 @@ $(document).ready(function(){
         function BindPracticeType() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetPracticeTypePrabhu",
+                url: "/Project/GetPracticeType",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
                 error: function () { }
             })
@@ -263,11 +390,13 @@ $(document).ready(function(){
         function BindRecruiter() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetRecruiterPrabhu",
+                url: "/Project/GetRecruiter",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlRecruiter").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
                 error: function () { }
             })
@@ -275,11 +404,13 @@ $(document).ready(function(){
         function BindInvoiceGroup() {
             $.ajax({
                 method: "GET",
-                url: "/Project/GetInvoiceGroupPrabhu",
+                url: "/Project/GetInvoiceGroup",
                 success: function (data) {
                     console.log(data);
 
-                    //ddlLocationGroup
+                    $(data).each(function () {
+                        $("#ddlInvoiceGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
                 },
                 error: function () { }
             })
