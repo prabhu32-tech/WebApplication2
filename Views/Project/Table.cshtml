@@ -2,38 +2,38 @@
 @{
     ViewBag.Title = "Index";
 }
-@using (Html.BeginForm("Save", "Project"))
+@using (Html.BeginForm("GetList", "Project"))
 {
 
+    <p class="alert-info">Form Submited</p>
+    @*<h2>My table</h2>
+        <table class="table" border="1" cellpadding="1" style="border:solid " width="100%">
 
-    <h2>My table</h2>
-    <table class="table" border="1" cellpadding="1" style="border:solid " width="100%">
+            <tr>
+                <th>Customer Name</th>
 
-        <tr>
-            <th>Customer Name</th>
+                <th> Project Name </th>
+                <th> Project Id </th>
+                <th> ProjectStartDate </th>
+                <th> ProjectEndDate </th>
+                <th> Project_Status</th>
+                <th>LocationGroup</th>
+                <th>State_Name</th>
+                <th>SalesPersonName</th>
+                <th>ProjectCategory</th>
+                <th>Project_Type</th>
+                <th>Sub_Domain</th>
+                <th>TimeSheetRepresentative</th>
+                <th>TimesheetType</th>
+                <th>PracticeType</th>
+                <th>Recruiter</th>
+                <th>InvoiceGroup</th>
+                <th>IsVmsTimeSheet</th>
+            </tr>
+            <tr>
+                <td> Customer_Name</td>
+            </tr>
 
-            <th> Project Name </th>
-            <th> Project Id </th>
-            <th> ProjectStartDate </th>
-            <th> ProjectEndDate </th>
-            <th> Project_Status</th>
-            <th>LocationGroup</th>
-            <th>State_Name</th>
-            <th>SalesPersonName</th>
-            <th>ProjectCategory</th>
-            <th>Project_Type</th>
-            <th>Sub_Domain</th>
-            <th>TimeSheetRepresentative</th>
-            <th>TimesheetType</th>
-            <th>PracticeType</th>
-            <th>Recruiter</th>
-            <th>InvoiceGroup</th>
-            <th>IsVmsTimeSheet</th>
-        </tr>
-        <tr>
-            <td> Customer_Name</td>
-        </tr>
-
-    </table>
-    @Html.ActionLink("Create","Index")
+        </table>
+        @Html.ActionLink("Getlist", "Getlist")*@
 }

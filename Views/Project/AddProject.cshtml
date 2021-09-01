@@ -42,17 +42,22 @@
         <div class="form-group">
             <label>LocationGroup </label>
             <select id="ddlLocationGroup" class="form-control">
+                <option>Select Location Group</option>
             </select>
         </div>
         <div class="form-group">
-            <label>State Name </label>
-            <input type="text" id="txtStateName" class="form-control">
-            
+            <label>State Name </label>           
+            <select id="ddlStateName" class="form-control">
+                <option>Select Payroll State</option>
+            </select>
+
         </div>
         <div class="form-group">
-            <label>SalesPerson Name </label>
-            <input type="text" id="txtSalesPersonName" class="form-control">
-           
+            <label>SalesPerson Name </label>           
+            <select id="ddlSalesPersonName" class="form-control">
+                <option>Select Sales Person </option>
+            </select>
+
         </div>
     </div>
     <div class="form-group">
@@ -119,6 +124,8 @@ $(document).ready(function(){
     BindPracticeType();
     BindRecruiter();
     BindInvoiceGroup();
+    BindPayrollState();
+    BindSalesPerson();
 
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
@@ -195,7 +202,40 @@ $(document).ready(function(){
             } else { flag = true; }
             return flag;
         }
+        function LocationGpValidation() {
+            let flag = true;
+            const ele = $('#ddlLocationGroup');
+            clearMessageJQ(ele)
+            const locGp = $('#ddlLocationGroup').val();
+            if (locGp == "Select Location Group") {
+                addErrorMessageJQ(ele, 'Please Select Location Group');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
 
+        function StateNameValidation() {
+            let flag = true;
+            const ele = $('#ddlStateName');
+            clearMessageJQ(ele)
+            const stateName = $('#ddlStateName').val();
+            if (stateName == "Select Payroll State") {
+                addErrorMessageJQ(ele, 'Please Select Payroll State');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SalsePersonValidation() {
+            let flag = true;
+            const ele = $('#ddlStateName');
+            clearMessageJQ(ele)
+            const stateName = $('#ddlStateName').val();
+            if (stateName == "Select Payroll State") {
+                addErrorMessageJQ(ele, 'Please Select Payroll State');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
 
         function IsValidate() {
         //    let _custName = $("#custName").val();
@@ -213,6 +253,12 @@ $(document).ready(function(){
                 flag = false;
             }
             if (!StartDateValidation()) {
+                flag = false;
+            }
+            if (!LocationGpValidation()) {
+                flag = false;
+            }
+            if (!StateNameValidation()) {
                 flag = false;
             }
 
@@ -410,6 +456,35 @@ $(document).ready(function(){
 
                     $(data).each(function () {
                         $("#ddlInvoiceGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+        function BindPayrollState() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetAllPayrollState",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlStateName").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+
+        function BindSalesPerson() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetAllSalesPerson",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlSalesPersonName").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
                 },
                 error: function () { }

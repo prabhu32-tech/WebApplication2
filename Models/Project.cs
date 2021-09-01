@@ -23,12 +23,12 @@ namespace WebApplication2.Models
         [Display(Name = "Project Start Date")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]
         [DataType(DataType.Date)]
-        public string ProjectStartDate { get; set; }
+        public DateTime ProjectStartDate { get; set; }
 
         [Display(Name = "Project End Date")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]
         [DataType(DataType.Date)]
-        public string ProjectEndDate { get; set; }
+        public DateTime ProjectEndDate { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese select Status ")]
         public string Project_Status { get; set; }

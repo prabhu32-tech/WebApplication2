@@ -24,9 +24,12 @@ namespace WebApplication2.ViewModel
 
         public List<AppRefData> Recruiter { get; set; }
         public List<AppRefData> InvoiceGP { get; set; }
+        public List<AppRefData> PayrollState { get; set; }
 
-       
+        public List<AppRefData> SalesPerson { get; set; }
 
-        
+
+
+
     }
 }

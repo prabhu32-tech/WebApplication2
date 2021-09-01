@@ -234,23 +234,106 @@ namespace WebApplication2.Repository
             con.Close();
             return getComps;
         }
-        public IList<Project> GetProjectList()
+
+        public List<AppRefData> GetPayrollState(int countryId)
         {
-            IList<Project> SelectListNew = new List<Project>();
-            using (SqlConnection con = new SqlConnection())
+            List<AppRefData> appRefDataList = new List<AppRefData>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_PayrollState_Prabhu", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@countryId", SqlDbType.Int);
+            cmd.Parameters["@countryId"].Value = countryId;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
             {
-                con.Open();
-                SqlCommand cmd = new SqlCommand("Get_Project_DetailsPrabhu_Training", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                {
-                    DataSet ds = new DataSet();
-                    da.Fill(ds);
-                }
-                con.Close();
+                appRefDataList.Add(
+                    new AppRefData { KeyID = Convert.ToInt32(reader["State_Id"]), KeyName = reader["Payroll_State"].ToString() }
+                    );
             }
+
+            reader.Close();
+            con.Close();
+
+            return appRefDataList;
+        }
+
+        public List<AppRefData> GetSalesPerson()
+        {
+            List<AppRefData> getComps = new List<AppRefData>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_SalesPerson_Prabhu", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                getComps.Add(
+                    new AppRefData { KeyID = Convert.ToInt32(reader["EmployeeDetails_Id"]), KeyName = reader["SalesPerson"].ToString() }
+                    );
+            }
+            reader.Close();
+
+            con.Close();
+            return getComps;
+        }
+
+        public List<Project> GetProjectList()
+        {
+            DataSet ds = new DataSet();
+            List<Project> SelectListNew = new List<Project>();
+            Connection();
+            SqlCommand cmd = new SqlCommand("Get_list_Prabhu_Training", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                da.Fill(ds);
+            }
+            if (ds.Tables.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    Project obj = new Project();
+                    obj.Customer_Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
+                    obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["ProjectName"]);
+                    obj.Project_Id = Convert.ToString(ds.Tables[0].Rows[i]["ProjectId"]);
+                    obj.ProjectStartDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["StartDate"]);
+                    obj.ProjectEndDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["EndDate"]);
+                    obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["ProjectStatus"]);
+                    obj.LocationGroup = Convert.ToString(ds.Tables[0].Rows[i]["LocationGroup"]);
+                    obj.State_Name = Convert.ToString(ds.Tables[0].Rows[i]["PayRollState"]);
+                    obj.SalesPersonName = Convert.ToString(ds.Tables[0].Rows[i]["SalesPerson"]);
+                    obj.ProjectCategory = Convert.ToString(ds.Tables[0].Rows[i]["ProjectCategory"]);
+                    obj.Project_Type = Convert.ToString(ds.Tables[0].Rows[i]["ProjectType"]);
+                    obj.Sub_Domain = Convert.ToString(ds.Tables[0].Rows[i]["SubDomain"]);
+                    obj.TimeSheetRepresentative = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetRepresentative"]);
+                    obj.InvoiceGroup = Convert.ToString(ds.Tables[0].Rows[i]["ClientInvoiceGroup"]);
+                    obj.TimesheetType = Convert.ToString(ds.Tables[0].Rows[i]["TimeSheetType"]);
+                    obj.IsVmsTimeSheet = Convert.ToString(ds.Tables[0].Rows[i]["IsVmsTimeSheet"]);
+                    obj.PracticeType = Convert.ToString(ds.Tables[0].Rows[i]["PracticeType"]);
+                    obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
+                    SelectListNew.Add(obj);
+                }
+            }
+
             return SelectListNew;
         }
-      
+
+        public DataSet GetList(ProjectAddEditViewModel pmodel)
+        {
+
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ToString());
+            SqlCommand cmd = new SqlCommand("Get_Project_DetailsPrabhu_Training", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataSet myrec = new DataSet();
+            da.Fill(myrec);
+            return myrec;
+        }
+
     }
 }

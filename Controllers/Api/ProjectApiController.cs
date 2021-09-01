@@ -109,5 +109,21 @@ namespace WebApplication2.Controllers.Api
             var projects = objRepo.GetProjectList();
             return Ok(projects);
         }
+        [HttpGet]
+        [Route("Project/GetAllPayrollState")]
+        public IHttpActionResult PayrollStateList()
+        {
+            Common objRepo = new Common();
+            var payrollState = objRepo.GetPayrollState(1);
+            return Ok(payrollState);
+        }
+        [HttpGet]
+        [Route("Project/GetAllSalesPerson")]
+        public IHttpActionResult SalesPersonList()
+        {
+            Common objRepo = new Common();
+            var salesPerson = objRepo.GetSalesPerson();
+            return Ok(salesPerson);
+        }
     }
 }

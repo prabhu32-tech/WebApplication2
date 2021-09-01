@@ -43,6 +43,8 @@ namespace WebApplication2.Controllers
             var pracType = objRepo.GetPracticeType();
             var recruiter = objRepo.GetRecruiter();
             var invoiceGP = objRepo.GetInvoiceGroup();
+            var payrollState = objRepo.GetPayrollState(1);
+            var salesPerson = objRepo.GetSalesPerson();
             //var getCust = objRepo.InsertUserDetails();
             //var insert = objRepo.AddProject();
 
@@ -57,8 +59,10 @@ namespace WebApplication2.Controllers
              TimeSheetType= timeSheetType,
              PracType= pracType,
              Recruiter=recruiter,
-             InvoiceGP= invoiceGP
-             //Customer_Name= getCust,
+             InvoiceGP= invoiceGP,
+             PayrollState= payrollState,
+             SalesPerson= salesPerson
+                //Customer_Name= getCust,
                 //Project_Name= insert
             };
             return View(empVM);
@@ -101,7 +105,7 @@ namespace WebApplication2.Controllers
         }
         public ActionResult GetList()
         {
-            var result = repository.GetAppRefData(1800);
+            var result =new Repository.Common().GetProjectList();
 
 
             return View(result);

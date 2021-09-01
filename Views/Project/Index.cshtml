@@ -49,13 +49,13 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Project.State_Name)
-                @Html.TextBoxFor(m => m.Project.State_Name, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Project.State_Name, new SelectList(Model.PayrollState, "KeyID", "KeyName"), "Select Payroll State", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Project.State_Name, "", new { @class = "text-danger" })
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Project.SalesPersonName)
-                @Html.TextBoxFor(m => m.Project.SalesPersonName, new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Project.SalesPersonName, new SelectList(Model.SalesPerson, "KeyID", "KeyName"), "Select SalesPerson Name", new { @class = "form-control" })
                 @Html.ValidationMessageFor(m => m.Project.SalesPersonName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,10 +68,18 @@
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Project.IsVmsTimeSheet)
-                @Html.TextBoxFor(m => m.Project.IsVmsTimeSheet, new { @class = "form-control" })
+                Yes
+                @Html.RadioButtonFor(m => m.Project.IsVmsTimeSheet, "Yes")
+                No
+                @Html.RadioButtonFor(m => m.Project.IsVmsTimeSheet, "No")
                 @Html.ValidationMessageFor(m => m.Project.IsVmsTimeSheet, "", new { @class = "text-danger" })
             </div>
-
+            @*<div class="form-group">
+                <label for="IsVmsTimeSheet">IsVmsTimeSheet</label>
+                <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
+                <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>
+            </div>*@
+            
 
             <div class="form-group">
                 @Html.LabelFor(m => m.Project.Project_Type)
