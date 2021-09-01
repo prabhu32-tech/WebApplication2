@@ -4,18 +4,23 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls;
+using WebApplication2.Models;
 using WebApplication2.Repository;
+using WebApplication2.ViewModel;
 
 namespace WebApplication2.Controllers.Api
 {
     public class ProjectController : ApiController
     {
-        //[HttpPost]
-        //[Route("Project/AddProject")]
-        //public IHttpActionResult AddProject(ProjectController pc)
-        //{
-        //    return Ok();
-        //}
+        [HttpPost]
+        [Route("Project/ProjectAdd")]
+        public IHttpActionResult AddProject(Project pc)
+        {
+            DataTable objRepo = new DataTable();
+            var dataTable = objRepo.SaveTable(pc);
+            return Ok(dataTable);
+        }
 
 
 
@@ -124,6 +129,14 @@ namespace WebApplication2.Controllers.Api
             Common objRepo = new Common();
             var salesPerson = objRepo.GetSalesPerson();
             return Ok(salesPerson);
+        }
+        [HttpGet]
+        [Route("ProjectApi/GetProjectList")]
+        public IHttpActionResult ProjectList()
+        {
+            Common objRepo = new Common();
+            var pro = objRepo.GetProjectList();
+            return Ok(pro);
         }
     }
 }

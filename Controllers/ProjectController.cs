@@ -113,11 +113,15 @@ namespace WebApplication2.Controllers
 
         public ActionResult AddProject()
         {
+          
+
             return View();
         }
 
         public ActionResult DataTable()
         {
+
+            
             return View();
         }
 

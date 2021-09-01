@@ -300,8 +300,8 @@ namespace WebApplication2.Repository
                     obj.Customer_Name = Convert.ToString(ds.Tables[0].Rows[i]["CustomerName"]);
                     obj.Project_Name = Convert.ToString(ds.Tables[0].Rows[i]["ProjectName"]);
                     obj.Project_Id = Convert.ToString(ds.Tables[0].Rows[i]["ProjectId"]);
-                    obj.ProjectStartDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["StartDate"]);
-                    obj.ProjectEndDate = Convert.ToDateTime(ds.Tables[0].Rows[i]["EndDate"]);
+                    obj.ProjectStartDate = Convert.ToString(ds.Tables[0].Rows[i]["StartDate"]);
+                    obj.ProjectEndDate = Convert.ToString(ds.Tables[0].Rows[i]["EndDate"]);
                     obj.Project_Status = Convert.ToString(ds.Tables[0].Rows[i]["ProjectStatus"]);
                     obj.LocationGroup = Convert.ToString(ds.Tables[0].Rows[i]["LocationGroup"]);
                     obj.State_Name = Convert.ToString(ds.Tables[0].Rows[i]["PayRollState"]);
@@ -326,7 +326,7 @@ namespace WebApplication2.Repository
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["DbConnection"].ToString());
-            SqlCommand cmd = new SqlCommand("Get_Project_DetailsPrabhu_Training", con);
+            SqlCommand cmd = new SqlCommand("Get_list_Prabhu_Training", con);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = cmd;

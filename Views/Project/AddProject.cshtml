@@ -1,4 +1,4 @@
-﻿@model WebApplication2.ViewModel.ProjectAddEditViewModel
+﻿@model WebApplication2.Models.Project
 @{
     ViewBag.Title = "AddProject";
 }
@@ -63,42 +63,49 @@
     <div class="form-group">
         <label>Project Category </label>
         <select id="ddlProjectCategory" class="form-control">
+            <option>Select Project Category </option>
         </select>
     </div>
     <div class="form-group">
         <label>Project Type </label>
         <select id="ddlProjectType" class="form-control">
-            
+              
         </select>
     </div>
     <div class="form-group">
         <label>Sub Domain </label>
         <select id="ddlSubDomain" class="form-control">
+            <option>Select SubDomain </option>
         </select>
     </div>
     <div class="form-group">
         <label>TimeSheet Representative </label>
         <select id="ddlTimeSheetRepresentative" class="form-control">
+            <option>Select TimeSheet Representative </option>
         </select>
     </div>
     <div class="form-group">
         <label>Timesheet Type </label>
         <select id="ddlTimesheetType" class="form-control">
+            <option>Select TimeSheet Type </option>
         </select>
     </div>
     <div class="form-group">
         <label>Practice Type</label>
         <select id="ddlPracticeType" class="form-control">
+            <option>Select Practice Type </option>
         </select>
     </div>
     <div class="form-group">
         <label>Recruiter</label>
         <select id="ddlRecruiter" class="form-control">
+            <option>Select Recruiter </option>
         </select>
     </div>
     <div class="form-group">
         <label>Invoice Group</label>
         <select id="ddlInvoiceGroup" class="form-control">
+            <option>Select Invoice Group </option>
         </select>
     </div>
     <div class="form-group">
@@ -227,19 +234,107 @@ $(document).ready(function(){
         }
         function SalsePersonValidation() {
             let flag = true;
-            const ele = $('#ddlStateName');
+            const ele = $('#ddlSalesPersonName');
             clearMessageJQ(ele)
-            const stateName = $('#ddlStateName').val();
-            if (stateName == "Select Payroll State") {
-                addErrorMessageJQ(ele, 'Please Select Payroll State');
+            const salesPName = $('#ddlSalesPersonName').val();
+            if (salesPName == "Select Sales Person") {
+                addErrorMessageJQ(ele, 'Please Select SalesPerson Name');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function ProjectCategoryValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectCategory');
+            clearMessageJQ(ele)
+            const projectCat = $('#ddlProjectCategory').val();
+            if (projectCat == "Select Project Category") {
+                addErrorMessageJQ(ele, 'Please Select Project Category');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SubDomainValidation() {
+            let flag = true;
+            const ele = $('#ddlSubDomain');
+            clearMessageJQ(ele)
+            const subDomain = $('#ddlSubDomain').val();
+            if (subDomain == "Select SubDomain") {
+                addErrorMessageJQ(ele, 'Please Select SubDomain');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSRepresentativenValidation() {
+            let flag = true;
+            const ele = $('#ddlTimeSheetRepresentative');
+            clearMessageJQ(ele)
+            const tsrp = $('#ddlTimeSheetRepresentative').val();
+            if (tsrp == "Select TimeSheet Representative") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Representative');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesheetType');
+            clearMessageJQ(ele)
+            const tsType = $('#ddlTimesheetType').val();
+            if (tsType == "Select TimeSheet Type") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function PracticeTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlPracticeType');
+            clearMessageJQ(ele)
+            const pracType = $('#ddlPracticeType').val();
+            if (pracType == "Select Practice Type") {
+                addErrorMessageJQ(ele, 'Please Select Practice Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function RecruiterValidation() {
+            let flag = true;
+            const ele = $('#ddlRecruiter');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlRecruiter').val();
+            if (recruiter == "Select Recruiter") {
+                addErrorMessageJQ(ele, 'Please Select Recruiter ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function InvoiceGpValidation() {
+            let flag = true;
+            const ele = $('#ddlInvoiceGroup');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlInvoiceGroup').val();
+            if (recruiter == "Select Invoice Group") {
+                addErrorMessageJQ(ele, 'Please Select Invoice Group ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+
+        function IsVmsTSValidation() {
+            let flag = true;
+            const ele = $("input[name='IsVmsTimeSheet']:checked");
+            clearMessageJQ(ele)
+            const isVms = $("input[name='IsVmsTimeSheet']:checked").val();
+            if (isVms == "") {
+                addErrorMessageJQ(ele, 'Please Choose One of there ');
                 flag = false;
             } else { flag = true; }
             return flag;
         }
 
         function IsValidate() {
-        //    let _custName = $("#custName").val();
-        //    if (_custName == "") { alert("Please fill the customer Name") }                                             //validations are missing
+                                                     
    
             let flag = true;
 
@@ -259,6 +354,33 @@ $(document).ready(function(){
                 flag = false;
             }
             if (!StateNameValidation()) {
+                flag = false;
+            }
+            if (!SalsePersonValidation()) {
+                flag = false;
+            }
+            if (!ProjectCategoryValidation()) {
+                flag = false;
+            }
+            if (!SubDomainValidation()) {
+                flag = false;
+            }
+            if (!TSRepresentativenValidation()) {
+                flag = false;
+            }
+            if (!TSTypeValidation()) {
+                flag = false;
+            }
+            if (!PracticeTypeValidation()) {
+                flag = false;
+            }
+            if (!RecruiterValidation()) {
+                flag = false;
+            }
+            if (!InvoiceGpValidation()) {
+                flag = false;
+            }
+            if (!IsVmsTSValidation()) {
                 flag = false;
             }
 
@@ -291,7 +413,7 @@ $(document).ready(function(){
             Project.Projectstatus = $("#ddlProjectStatus :selected").text();
             Project.StartDate = $("#startDate ").val();
             Project.EndDate = $("#endDate ").val();
-            Project.LocationGroup = $("#ddlLocationGroup").text();
+            Project.LocationGroup = $("#ddlLocationGroup").val();
             Project.StateName = $("#txtStateName").val();
             Project.SalsePersonName = $("#txtSalesPersonName").val();
             Project.ProjectCategory = $("#ddlProjectCategory :selected").text();
@@ -306,9 +428,9 @@ $(document).ready(function(){
             console.log(Project);
             $.ajax({
                 method: "POST",
-                url: "/Project/AddProject",
-                dataType: "json",
-                data: Project,
+                url: "/Project/ProjectAdd",
+                dataType: "json",                
+               data: Project,
                 success: function () { },
                 error: function () {}
             });

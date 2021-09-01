@@ -6,9 +6,7 @@
 <table id="prjList" class="table-bordered table-striped" >
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Project Status</th>
-            <th>CustomerName</th>
+            <th>Customer_Name</th>
             <th>ProjectName</th>
             <th>ProjectId</th>
             <th>StartDate</th>
@@ -34,86 +32,66 @@
 
 @section scripts{
     <script>$(document).ready(function () {
-
-            //$("#prjList").DataTable({
-            //    ajax: {
-            //        url: "/Project/GetStatusTrainingPrabhu?parentId=1800",
-            //        dataSrc:""
-            //    },
-            //    columns: [
-            //        {
-            //            data: "keyID"
-            //        },
-            //        {
-            //            data: "keyName",
-            //            render: function (data) { return "" + data }
-            //        }]
-            //});
+       
     $("#prjList").DataTable({
         ajax: {
-            url: "Project/GetAllDetails",
+            url: "/ProjectApi/GetProjectList",
             dataSrc: ""
         },
         columns: [
+          
             {
-                data: "keyID"
+                data:"customer_Name"
             },
             {
-                data: "keyName",
-                render: function (data) { return "" + data }
+                data: "project_Name"
             },
             {
-                data:"Name"
+                data: "project_Id"
             },
             {
-                data: "Name"
+                data: "projectStartDate"
             },
             {
-                data: "Name"
+                data: "projectEndDate"
             },
             {
-                data: "Name"
+                data: "project_Status"
             },
             {
-                data: "Name"
+                data: "locationGroup"
             },
             {
-                data: "Name"
+                data: "state_Name"
             },
             {
-                data: "Name"
-            },
-            {
-                data: "Name"
-            },
-            {
-                data: "Name"
+                data: "salesPersonName"
             }, {
-                data: "Name"
+                data: "projectCategory"
             },
             {
-                data: "Name"
+                data: "project_Type"
             },
             {
-                data: "Name"
+                data: "sub_Domain"
             },
             {
-                data: "Name"
+                data: "timeSheetRepresentative"
             },
             {
-                data: "Name"
+                data: "timesheetType"
             },
             {
-                data: "Name"
+                data: "practiceType"
             },
             {
-                data: "Name"
+                data: "recruiter"
             },
             {
-                data: "Name"
+                data: "invoiceGroup"
             },
             {
-                data: "Name"
+                data: "isVmsTimeSheet"
             }
         ]
     });
