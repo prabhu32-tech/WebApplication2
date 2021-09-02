@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication2.Models;
 using WebApplication2.Repository;
 using WebApplication2.ViewModel;
 
@@ -14,14 +15,11 @@ namespace WebApplication2.Controllers
     public class ProjectController : Controller
     {
 
-        Common repository = null;
-        public ProjectController()
-        {
-            repository = new Common();
-        }
+        
 
 
         private SqlConnection con;
+        
 
         private void Connection()
         {
@@ -113,8 +111,7 @@ namespace WebApplication2.Controllers
 
         public ActionResult AddProject()
         {
-          
-
+            
             return View();
         }
 

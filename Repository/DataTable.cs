@@ -23,10 +23,10 @@ namespace WebApplication2.Repository
         }
   
 
-        public bool SaveTable(Project model)
+        public string SaveTable(Project model)
         {
             Connection();
-            SqlCommand com = new SqlCommand("Project_DetailsPrabhu_Training", con);
+            SqlCommand com = new SqlCommand("Project_DataTable_Prabhu_Training", con);
             com.CommandType = CommandType.StoredProcedure;
             com.Parameters.AddWithValue("@CustomerName", model.Customer_Name);
             com.Parameters.AddWithValue("@ProjectName", model.Project_Name);
@@ -52,11 +52,11 @@ namespace WebApplication2.Repository
             con.Close();
             if (i >= 1)
             {
-                return true;
+                return "Form Submitted";
             }
             else
             {
-                return false;
+                return "Please Fill Valid Information";
             }
         }
     }

@@ -113,7 +113,6 @@
         <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
         <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>       
     </div>
-
     <input type="button" class="btn-primary" value="Save" id="btnSave" />
 </form>
 
@@ -388,18 +387,18 @@ $(document).ready(function(){
         }
         function SaveData() {
             let Project = {
-                Name: "",
-                ProjectName: "",
-                ProjectId: "",
+                Customer_Name: "",
+                Project_Name: "",
+                Project_Id: "",
                 Projectstatus: 0,
-                StartDate:"",                
-                EndDate:"",
+                ProjectStartDate:"",
+                ProjectEndDate:"",
                 LocationGroup: "",
-                StateName: "",
-                SalsePersonName: "",
+                State_Name: "",
+                SalesPersonName: "",
                 ProjectCategory: "",
-                ProjectType: "",
-                SubDomain: "",
+                Project_Type: "",
+                Sub_Domain: "",
                 TimeSheetRepresentative: "",
                 TimesheetType: "",
                 PracticeType: "",
@@ -407,23 +406,23 @@ $(document).ready(function(){
                 InvoiceGroup: "",
                 IsVmsTimeSheet:"",
             };
-            Project.Name = $("#custName").val();
-            Project.ProjectName = $("#txtProjectName").val();
-            Project.ProjectId = $("#txtProjectID").val();
-            Project.Projectstatus = $("#ddlProjectStatus :selected").text();
-            Project.StartDate = $("#startDate ").val();
-            Project.EndDate = $("#endDate ").val();
+            Project.Customer_Name = $("#custName").val();
+            Project.Project_Name = $("#txtProjectName").val();
+            Project.Project_Id = $("#txtProjectID").val();
+            Project.Project_Status = $("#ddlProjectStatus").val();
+            Project.ProjectStartDate = $("#startDate ").val();
+            Project.ProjectEndDate = $("#endDate ").val();
             Project.LocationGroup = $("#ddlLocationGroup").val();
-            Project.StateName = $("#txtStateName").val();
-            Project.SalsePersonName = $("#txtSalesPersonName").val();
-            Project.ProjectCategory = $("#ddlProjectCategory :selected").text();
-            Project.ProjectType = $("#ddlProjectType :selected").text();
-            Project.SubDomain = $("#ddlSubDomain :selected").text();
-            Project.TimeSheetRepresentative = $("#ddlTimeSheetRepresentative :selected").text();
-            Project.TimesheetType = $("#ddlTimesheetType :selected").text();
-            Project.PracticeType = $("#ddlPracticeType :selected").text();
-            Project.Recruiter = $("#ddlRecruiter :selected").text();
-            Project.InvoiceGroup = $("#ddlInvoiceGroup :selected").text();
+            Project.State_Name = $("#ddlStateName").val();
+            Project.SalesPersonName = $("#ddlSalesPersonName").val();
+            Project.ProjectCategory = $("#ddlProjectCategory").val();
+            Project.Project_Type = $("#ddlProjectType").val();
+            Project.Sub_Domain = $("#ddlSubDomain").val();
+            Project.TimeSheetRepresentative = $("#ddlTimeSheetRepresentative").val();
+            Project.TimesheetType = $("#ddlTimesheetType").val();
+            Project.PracticeType = $("#ddlPracticeType").val();
+            Project.Recruiter = $("#ddlRecruiter").val();
+            Project.InvoiceGroup = $("#ddlInvoiceGroup").val();
             Project.IsVmsTimeSheet = $("input[name='IsVmsTimeSheet']:checked").val();
             console.log(Project);
             $.ajax({
