@@ -15,8 +15,6 @@ namespace WebApplication2.Controllers
     public class ProjectController : Controller
     {
 
-        
-
 
         private SqlConnection con;
         
@@ -121,6 +119,28 @@ namespace WebApplication2.Controllers
             
             return View();
         }
+        public ActionResult Edit(string Project_Id)
+        {
 
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Edit(string Project_Id, FormCollection collection)
+        {
+            //Connection();
+            //SqlCommand com = new SqlCommand("Get_list_Prabhu_Training", con);
+            //com.CommandType = CommandType.StoredProcedure;
+            //com.Parameters.AsParallel("@CustomerName", model.Project.Customer_Name);
+
+            try
+            {
+                string Customer_Name = Request.Form["Customer_Name"];                                                                        // TODO: Add update logic here  
+                return RedirectToAction("GetList");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }
