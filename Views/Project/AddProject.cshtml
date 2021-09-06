@@ -6,7 +6,7 @@
 <h2>AddProject</h2>
 
 
-<form>
+<form id="myform">
     <div class="col-md-6">
         <div class="form-group">
             <label for="custName">Customer Name</label>
@@ -113,12 +113,14 @@
         <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
         <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>       
     </div>
-    <input type="button" class="btn-primary" value="Save" id="btnSave" />
+    <input type="submit" class="btn-primary" value="Save" id="btnSave" />
 </form>
 
 @section scripts{
 
     <script>
+   
+
 $(document).ready(function(){
     BindProjectStatusList();
     BindLocationGroup();
@@ -136,6 +138,7 @@ $(document).ready(function(){
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
+                   // reset_form(event);
                 }
 
             });
@@ -434,6 +437,10 @@ $(document).ready(function(){
                 error: function () {}
             });
         }
+        //function reset_form(event) {
+
+        //    document.getElementById("myform").reset();
+        //}
 
         function BindProjectStatusList() {
             $.ajax({
