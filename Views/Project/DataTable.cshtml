@@ -2,8 +2,26 @@
 @{ ViewBag.Title = "DataTable"; }
 
 <h2>Projects List</h2>
+<div class="form-group col-md-3">
+    <label>Project Type </label>
+    <select id="ddlProjectType" class="form-control">
+    </select>
+</div>
+<div class="form-group col-md-3">
+    <label>Practice Type</label>
+    <select id="ddlPracticeType" class="form-control">
+        <option>Select Practice Type </option>
+    </select>
+</div>
+<div class="form-group col-md-3">
+    <label for="custName">Search</label>
+    <input type="text" id="custName" class="form-control" />
+    <input type="button" class="btn-primary" value="Submit" id="btnSubmit" />
+</div>
 
-<table id="prjList" class="table-bordered table-striped" >
+
+
+<table id="prjList" class="table-bordered table-striped">
     <thead>
         <tr>
             <th>Customer_Name</th>
@@ -24,6 +42,7 @@
             <th>Recruiter</th>
             <th>InvoiceGroup</th>
             <th>IsVmsTimeSheet</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -31,71 +50,133 @@
 </table>
 
 @section scripts{
-    <script>$(document).ready(function () {
-       
-    $("#prjList").DataTable({
-        ajax: {
-            url: "/ProjectApi/GetProjectList",
-            dataSrc: ""
-        },
-        columns: [
-          
-            {
-                data:"customer_Name"
-            },
-            {
-                data: "project_Name"
-            },
-            {
-                data: "project_Id"
-            },
-            {
-                data: "projectStartDate"
-            },
-            {
-                data: "projectEndDate"
-            },
-            {
-                data: "project_Status"
-            },
-            {
-                data: "locationGroup"
-            },
-            {
-                data: "state_Name"
-            },
-            {
-                data: "salesPersonName"
-            }, {
-                data: "projectCategory"
-            },
-            {
-                data: "project_Type"
-            },
-            {
-                data: "sub_Domain"
-            },
-            {
-                data: "timeSheetRepresentative"
-            },
-            {
-                data: "timesheetType"
-            },
-            {
-                data: "practiceType"
-            },
-            {
-                data: "recruiter"
-            },
-            {
-                data: "invoiceGroup"
-            },
-            {
-                data: "isVmsTimeSheet"
-            }
-        ]
-    });
+    <script>
+      
+            $(document).ready(function () {
+                BindProjectType();
+                BindPracticeType();
+            });
 
+
+            function BindProjectType() {
+                $.ajax({
+                    method: "GET",
+                    url: "/Project/GetProjectType",
+                    success: function (data) {
+                        console.log(data);
+                        $(data).each(function () {
+                            $("#ddlProjectType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                        });
+
+                    },
+                    error: function () { }
+                })
+
+            }
+        function BindPracticeType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetPracticeType",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+
+
+        $(document).ready(function () {
+            $("#prjList").DataTable({
+                ajax: {
+                    url: "/ProjectApi/GetProjectList",
+                    dataSrc: ""
+                },
+                columns: [
+
+                    {
+                        data: "customer_Name"
+                    },
+                    {
+                        data: "project_Name"
+                    },
+                    {
+                        data: "project_Id"
+
+                    },
+                    {
+                        data: "projectStartDate"
+                    },
+                    {
+                        data: "projectEndDate"
+                    },
+                    {
+                        data: "project_Status"
+                    },
+                    {
+                        data: "locationGroup"
+                    },
+                    {
+                        data: "state_Name"
+                    },
+                    {
+                        data: "salesPersonName"
+                    }, {
+                        data: "projectCategory"
+                    },
+                    {
+                        data: "project_Type"
+                    },
+                    {
+                        data: "sub_Domain"
+                    },
+                    {
+                        data: "timeSheetRepresentative"
+                    },
+                    {
+                        data: "timesheetType"
+                    },
+                    {
+                        data: "practiceType"
+                    },
+                    {
+                        data: "recruiter"
+                    },
+                    {
+                        data: "invoiceGroup"
+                    },
+                    {
+                        data: "isVmsTimeSheet"
+                    },
+                    {
+                        //edit button creation
+                        render: function (data, type, row) {
+                            return createButton('edit', row.id);
+                        }
+                    }],
+                //{
+                //    //delete button creation
+                //    render: function (data, type, row) {
+                //        return createButton('delete', row.id);
+                //    }
+                //}
+
+                //"searching": false,
+                //"paging": true,
+                //"info": true,
+                //"language": {
+                //    "emptyTable": "No data available"
+                // },
+
+            });
+            function createButton(buttonType, rowID) {
+                var buttonText = buttonType == "edit" ? "Edit" : "Delete";
+                return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
+            }
         });</script>
+
 }
 

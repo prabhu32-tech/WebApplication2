@@ -1,172 +1,614 @@
-﻿@model WebApplication2.ViewModel.ProjectAddEditViewModel
-
+﻿@model WebApplication2.Models.Project
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Project";
 }
 
-<h2>Edit</h2>
+<h2>AddProject</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Project</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+<form>
+    <div class="col-md-6">
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.Customer_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Customer_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Customer_Name, "", new { @class = "text-danger" })
-            </div>
+            <label for="custName">Customer Name</label>
+            <input type="text" id="custName" class="form-control" />
+        </div>
+
+
+        <div class="form-group">
+            <label for="txtProjectName">Project Name</label>
+            <input type="text" id="txtProjectName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="txtProjectID">Project Id</label>
+            <input type="text" id="txtProjectID" class="form-control" />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.Project_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Project_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Project_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="form-control">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.Project_Id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Project_Id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Project_Id, "", new { @class = "text-danger" })
-            </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.ProjectStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.ProjectStartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.ProjectStartDate, "", new { @class = "text-danger" })
-            </div>
+            <label>End Date</label>
+            <input type="date" id="endDate" class="form-control">
+
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.ProjectEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.ProjectEndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.ProjectEndDate, "", new { @class = "text-danger" })
-            </div>
+            <label>Project Status</label>
+            <select id="ddlProjectStatus" class="form-control">
+            </select>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.Project_Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                
-                @Html.EditorFor(model => model.Project.Project_Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Project_Status, "", new { @class = "text-danger" })
-            </div>
+            <label>LocationGroup </label>
+            <select id="ddlLocationGroup" class="form-control">
+                <option>Select Location Group</option>
+            </select>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.LocationGroup, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.LocationGroup, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.LocationGroup, "", new { @class = "text-danger" })
-            </div>
+            <label>State </label>
+            <select id="ddlStateName" class="form-control">
+                <option>Select Payroll State</option>
+            </select>
+
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.State_Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.State_Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.State_Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <label>SalesPerson Name </label>
+            <select id="ddlSalesPersonName" class="form-control">
+                <option>Select Sales Person </option>
+            </select>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.SalesPersonName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.SalesPersonName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.SalesPersonName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.ProjectCategory, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.ProjectCategory, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.ProjectCategory, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.Project_Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Project_Type, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Project_Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.Sub_Domain, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.Sub_Domain, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.Sub_Domain, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.TimeSheetRepresentative, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.TimeSheetRepresentative, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.TimeSheetRepresentative, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.TimesheetType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.TimesheetType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.TimesheetType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.PracticeType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.PracticeType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.PracticeType, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Recruiter, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Recruiter, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Recruiter, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.InvoiceGroup, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.InvoiceGroup, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.InvoiceGroup, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Project.IsVmsTimeSheet, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Project.IsVmsTimeSheet, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Project.IsVmsTimeSheet, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
         </div>
     </div>
-}
+    <div class="form-group">
+        <label>Project Category </label>
+        <select id="ddlProjectCategory" class="form-control">
+            <option>Select Project Category </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Project Type </label>
+        <select id="ddlProjectType" class="form-control">
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Sub Domain </label>
+        <select id="ddlSubDomain" class="form-control">
+            <option>Select SubDomain </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>TimeSheet Representative </label>
+        <select id="ddlTimeSheetRepresentative" class="form-control">
+            <option>Select TimeSheet Representative </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Timesheet Type </label>
+        <select id="ddlTimesheetType" class="form-control">
+            <option>Select TimeSheet Type </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Practice Type</label>
+        <select id="ddlPracticeType" class="form-control">
+            <option>Select Practice Type </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Recruiter</label>
+        <select id="ddlRecruiter" class="form-control">
+            <option>Select Recruiter </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Invoice Group</label>
+        <select id="ddlInvoiceGroup" class="form-control">
+            <option>Select Invoice Group </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="IsVmsTimeSheet">IsVmsTimeSheet</label>
+        <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
+        <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>
+    </div>
+    <input type="button" class="btn-primary" value="Save" id="btnSave" />
+</form>
 
-<div>
-    @Html.ActionLink("Back to List", "GetList")
-</div>
+@section scripts{
+
+    <script>
+$(document).ready(function(){
+    BindProjectStatusList();
+    BindLocationGroup();
+    BindProjectCategory();
+    BindProjectType();
+    BindSubDomain();
+    BindTimeSheet();
+    BindTimeSheetType();
+    BindPracticeType();
+    BindRecruiter();
+    BindInvoiceGroup();
+    BindPayrollState();
+    BindSalesPerson();
+
+            $("#btnSave").on("click", function () {
+                if (IsValidate()) {
+                    SaveData();
+                }
+
+            });
+        });
+        function clearMessageJQ(ele) {
+            $(ele).siblings('span.error').remove();
+        }
+
+        function addErrorMessageJQ(ele, msg) {
+            const errorCtrl = $('<span />').addClass('error').html(msg);
+            $(ele).closest('div').append(errorCtrl);
+        }
+
+        function CustNameValidation() {
+            let flag = true;
+            const ele = $('#custName');
+            clearMessageJQ(ele)
+            const custName = $('#custName').val();
+
+            if (custName === "" || custName.length <= 2 || !isNaN(custName.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the customer Name');
+                console.log(custName);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjectNameValidation() {
+            let flag = true;
+            const ele = $('#txtProjectName');
+            clearMessageJQ(ele)
+            const prjName = $('#txtProjectName').val();
+
+            if (prjName === "" || prjName.length <= 2 || !isNaN(prjName.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Name');
+                console.log(prjName);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function ProjectIdValidation() {
+            let flag = true;
+            const ele = $('#txtProjectID');
+            clearMessageJQ(ele)
+            const prjId = $('#txtProjectID').val();
+
+            if (prjId === "" || prjId.length <= 2 || !isNaN(prjId.split('')[0])) {
+                addErrorMessageJQ(ele, 'Please fill the Project Id');
+                console.log(prjId);
+                flag = false;
+            } else {
+                flag = true;
+            }
+            return flag;
+        }
+
+        function StartDateValidation() {
+            let flag = true;
+            const ele = $('#startDate');
+            clearMessageJQ(ele)
+            const stDate = $('#startDate').val();
+            if (stDate == "") {
+                addErrorMessageJQ(ele, 'Please fill the Project Start Date');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function LocationGpValidation() {
+            let flag = true;
+            const ele = $('#ddlLocationGroup');
+            clearMessageJQ(ele)
+            const locGp = $('#ddlLocationGroup').val();
+            if (locGp == "Select Location Group") {
+                addErrorMessageJQ(ele, 'Please Select Location Group');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+
+        function StateNameValidation() {
+            let flag = true;
+            const ele = $('#ddlStateName');
+            clearMessageJQ(ele)
+            const stateName = $('#ddlStateName').val();
+            if (stateName == "Select Payroll State") {
+                addErrorMessageJQ(ele, 'Please Select Payroll State');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SalsePersonValidation() {
+            let flag = true;
+            const ele = $('#ddlSalesPersonName');
+            clearMessageJQ(ele)
+            const salesPName = $('#ddlSalesPersonName').val();
+            if (salesPName == "Select Sales Person") {
+                addErrorMessageJQ(ele, 'Please Select SalesPerson Name');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function ProjectCategoryValidation() {
+            let flag = true;
+            const ele = $('#ddlProjectCategory');
+            clearMessageJQ(ele)
+            const projectCat = $('#ddlProjectCategory').val();
+            if (projectCat == "Select Project Category") {
+                addErrorMessageJQ(ele, 'Please Select Project Category');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function SubDomainValidation() {
+            let flag = true;
+            const ele = $('#ddlSubDomain');
+            clearMessageJQ(ele)
+            const subDomain = $('#ddlSubDomain').val();
+            if (subDomain == "Select SubDomain") {
+                addErrorMessageJQ(ele, 'Please Select SubDomain');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSRepresentativenValidation() {
+            let flag = true;
+            const ele = $('#ddlTimeSheetRepresentative');
+            clearMessageJQ(ele)
+            const tsrp = $('#ddlTimeSheetRepresentative').val();
+            if (tsrp == "Select TimeSheet Representative") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Representative');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function TSTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlTimesheetType');
+            clearMessageJQ(ele)
+            const tsType = $('#ddlTimesheetType').val();
+            if (tsType == "Select TimeSheet Type") {
+                addErrorMessageJQ(ele, 'Please Select TimeSheet Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function PracticeTypeValidation() {
+            let flag = true;
+            const ele = $('#ddlPracticeType');
+            clearMessageJQ(ele)
+            const pracType = $('#ddlPracticeType').val();
+            if (pracType == "Select Practice Type") {
+                addErrorMessageJQ(ele, 'Please Select Practice Type');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function RecruiterValidation() {
+            let flag = true;
+            const ele = $('#ddlRecruiter');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlRecruiter').val();
+            if (recruiter == "Select Recruiter") {
+                addErrorMessageJQ(ele, 'Please Select Recruiter ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+        function InvoiceGpValidation() {
+            let flag = true;
+            const ele = $('#ddlInvoiceGroup');
+            clearMessageJQ(ele)
+            const recruiter = $('#ddlInvoiceGroup').val();
+            if (recruiter == "Select Invoice Group") {
+                addErrorMessageJQ(ele, 'Please Select Invoice Group ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+
+        function IsVmsTSValidation() {
+            let flag = true;
+            const ele = $("input[name='IsVmsTimeSheet']:checked");
+            clearMessageJQ(ele)
+            const isVms = $("input[name='IsVmsTimeSheet']:checked").val();
+            if (isVms == "") {
+                addErrorMessageJQ(ele, 'Please Choose One of there ');
+                flag = false;
+            } else { flag = true; }
+            return flag;
+        }
+
+        function IsValidate() {
+
+
+            let flag = true;
+
+            if (!CustNameValidation()) {
+                flag = false;
+            }
+            if (!ProjectNameValidation()) {
+                flag = false;
+            }
+            if (!ProjectIdValidation()) {
+                flag = false;
+            }
+            if (!StartDateValidation()) {
+                flag = false;
+            }
+            if (!LocationGpValidation()) {
+                flag = false;
+            }
+            if (!StateNameValidation()) {
+                flag = false;
+            }
+            if (!SalsePersonValidation()) {
+                flag = false;
+            }
+            if (!ProjectCategoryValidation()) {
+                flag = false;
+            }
+            if (!SubDomainValidation()) {
+                flag = false;
+            }
+            if (!TSRepresentativenValidation()) {
+                flag = false;
+            }
+            if (!TSTypeValidation()) {
+                flag = false;
+            }
+            if (!PracticeTypeValidation()) {
+                flag = false;
+            }
+            if (!RecruiterValidation()) {
+                flag = false;
+            }
+            if (!InvoiceGpValidation()) {
+                flag = false;
+            }
+            if (!IsVmsTSValidation()) {
+                flag = false;
+            }
+
+            return flag;
+        }
+        function SaveData() {
+            let Project = {
+                Customer_Name: "",
+                Project_Name: "",
+                Project_Id: "",
+                Projectstatus: 0,
+                ProjectStartDate:"",
+                ProjectEndDate:"",
+                LocationGroup: "",
+                State_Name: "",
+                SalesPersonName: "",
+                ProjectCategory: "",
+                Project_Type: "",
+                Sub_Domain: "",
+                TimeSheetRepresentative: "",
+                TimesheetType: "",
+                PracticeType: "",
+                Recruiter: "",
+                InvoiceGroup: "",
+                IsVmsTimeSheet:"",
+            };
+            Project.Customer_Name = $("#custName").val();
+            Project.Project_Name = $("#txtProjectName").val();
+            Project.Project_Id = $("#txtProjectID").val();
+            Project.Project_Status = $("#ddlProjectStatus").val();
+            Project.ProjectStartDate = $("#startDate ").val();
+            Project.ProjectEndDate = $("#endDate ").val();
+            Project.LocationGroup = $("#ddlLocationGroup").val();
+            Project.State_Name = $("#ddlStateName").val();
+            Project.SalesPersonName = $("#ddlSalesPersonName").val();
+            Project.ProjectCategory = $("#ddlProjectCategory").val();
+            Project.Project_Type = $("#ddlProjectType").val();
+            Project.Sub_Domain = $("#ddlSubDomain").val();
+            Project.TimeSheetRepresentative = $("#ddlTimeSheetRepresentative").val();
+            Project.TimesheetType = $("#ddlTimesheetType").val();
+            Project.PracticeType = $("#ddlPracticeType").val();
+            Project.Recruiter = $("#ddlRecruiter").val();
+            Project.InvoiceGroup = $("#ddlInvoiceGroup").val();
+            Project.IsVmsTimeSheet = $("input[name='IsVmsTimeSheet']:checked").val();
+            console.log(Project);
+            $.ajax({
+                method: "POST",
+                url: "/Project/ProjectAdd",
+                dataType: "json",
+               data: Project,
+                success: function () { },
+                error: function () {}
+            });
+        }
+
+        function BindProjectStatusList() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetStatusTraining?parentId=1800",
+                success: function (data) {
+                    //console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlProjectStatus").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+
+                error: function () { }
+            });
+        }
+        function BindLocationGroup() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetLocationGroup",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlLocationGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+
+
+                error: function () { }
+            })
+
+        }
+        function BindProjectCategory() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetProjectCat",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectCategory").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+
+                },
+                error: function () { }
+            })
+
+        }
+        function BindProjectType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetProjectType",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlProjectType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+
+                },
+                error: function () { }
+            })
+
+        }
+
+        function BindSubDomain() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetSubDomain",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlSubDomain").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+
+                },
+                error: function () { }
+            })
+
+        }
+        function BindTimeSheet() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetTimeSheet",
+                success: function (data) {
+                    console.log(data);
+                    $(data).each(function () {
+                        $("#ddlTimeSheetRepresentative").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+
+                },
+                error: function () { }
+            })
+        }
+        function BindTimeSheetType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetTimeSheetType",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlTimesheetType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+        function BindPracticeType() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetPracticeType",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlPracticeType").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+        function BindRecruiter() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetRecruiter",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlRecruiter").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+        function BindInvoiceGroup() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetInvoiceGroup",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlInvoiceGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+        function BindPayrollState() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetAllPayrollState",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlStateName").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+
+        function BindSalesPerson() {
+            $.ajax({
+                method: "GET",
+                url: "/Project/GetAllSalesPerson",
+                success: function (data) {
+                    console.log(data);
+
+                    $(data).each(function () {
+                        $("#ddlSalesPersonName").append($("<option></option>").val(this.keyID).html(this.keyName));
+                    });
+                },
+                error: function () { }
+            })
+        }
+
+    </script>
+}

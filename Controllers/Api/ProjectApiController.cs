@@ -138,5 +138,14 @@ namespace WebApplication2.Controllers.Api
             var pro = objRepo.GetProjectList();
             return Ok(pro);
         }
+
+        //[HttpGet]
+        //[Route("ProjectApi/GetProjectDataList")]
+        //public IHttpActionResult ProjecDatatList()
+        //{
+        //    //DataTable objRepo = new DataTable();
+        //    //var pro = objRepo.GetProjectData(project_Id);
+        //    //return Ok(pro);
+        //}
     }
 }

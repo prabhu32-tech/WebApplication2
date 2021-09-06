@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -119,13 +120,29 @@ namespace WebApplication2.Controllers
             
             return View();
         }
-        public ActionResult Edit(string Project_Id)
+        public ActionResult Edit(string Id)
         {
+            Repository.Common sbd = new Repository.Common();
+            //var xyz = sbd.GetProjectList().Find(Project => Project.Project_Id == Id);
+            return View(sbd.GetProjectList().Find(Project=> Project.Project_Id == Id));
+            //string _data = "";
+            //con.Open();
+            //SqlCommand cmd = new SqlCommand("Project_Edit_Prabhu_Training", con);
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@ProjectId", Project_Id);
+            //SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //DataSet ds = new DataSet();
+            //da.Fill(ds);
+            //con.Close();
+            //if (ds.Tables[0].Rows.Count > 0)
+            //{
+            //    _data = JsonConvert.SerializeObject(ds.Tables[0]);
+            //}
 
-            return View();
+            //return View(_data);
         }
         [HttpPost]
-        public ActionResult Edit(string Project_Id, FormCollection collection)
+        public ActionResult Edit(string Project_Id, Project smodel)
         {
             //Connection();
             //SqlCommand com = new SqlCommand("Get_list_Prabhu_Training", con);
@@ -134,7 +151,8 @@ namespace WebApplication2.Controllers
 
             try
             {
-                string Customer_Name = Request.Form["Customer_Name"];                                                                        // TODO: Add update logic here  
+                Repository.Common sbd = new Repository.Common();
+                sbd.GetProjectList();                                                        
                 return RedirectToAction("GetList");
             }
             catch
