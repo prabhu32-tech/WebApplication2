@@ -117,19 +117,29 @@
 @section scripts{
 
     <script>
-$(document).ready(function(){
-    BindProjectStatusList();
-    BindLocationGroup();
-    BindProjectCategory();
-    BindProjectType();
-    BindSubDomain();
-    BindTimeSheet();
-    BindTimeSheetType();
-    BindPracticeType();
-    BindRecruiter();
-    BindInvoiceGroup();
-    BindPayrollState();
-    BindSalesPerson();
+       
+
+
+        $(document).ready(function () {
+            $.when(
+                BindProjectStatusList(),
+            BindLocationGroup(),
+            BindProjectCategory(),
+            BindProjectType(),
+            BindSubDomain(),
+            BindTimeSheet(),
+            BindTimeSheetType(),
+            BindPracticeType(),
+            BindRecruiter(),
+            BindInvoiceGroup(),
+            BindPayrollState(),
+            BindSalesPerson(),
+            ).done(function () {
+                //console.log("ddlProjectType");
+                GetProjectData()
+            })
+
+    
 
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
@@ -453,7 +463,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetLocationGroup",
                 success: function (data) {
-                    console.log(data);
+                  //  console.log(data);
                     $(data).each(function () {
                         $("#ddlLocationGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
@@ -469,7 +479,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetProjectCat",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
                     $(data).each(function () {
                         $("#ddlProjectCategory").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
@@ -480,11 +490,11 @@ $(document).ready(function(){
 
         }
         function BindProjectType() {
-            $.ajax({
+           return $.ajax({
                 method: "GET",
                 url: "/Project/GetProjectType",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
                     $(data).each(function () {
                         $("#ddlProjectType").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
@@ -500,7 +510,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetSubDomain",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
                     $(data).each(function () {
                         $("#ddlSubDomain").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
@@ -515,7 +525,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetTimeSheet",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
                     $(data).each(function () {
                         $("#ddlTimeSheetRepresentative").append($("<option></option>").val(this.keyID).html(this.keyName));
                     });
@@ -529,7 +539,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetTimeSheetType",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
 
                     $(data).each(function () {
                         $("#ddlTimesheetType").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -543,7 +553,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetPracticeType",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
 
                     $(data).each(function () {
                         $("#ddlPracticeType").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -557,7 +567,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetRecruiter",
                 success: function (data) {
-                    console.log(data);
+                 //   console.log(data);
 
                     $(data).each(function () {
                         $("#ddlRecruiter").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -571,7 +581,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetInvoiceGroup",
                 success: function (data) {
-                    console.log(data);
+                   // console.log(data);
 
                     $(data).each(function () {
                         $("#ddlInvoiceGroup").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -585,7 +595,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetAllPayrollState",
                 success: function (data) {
-                    console.log(data);
+                 //  console.log(data);
 
                     $(data).each(function () {
                         $("#ddlStateName").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -600,7 +610,7 @@ $(document).ready(function(){
                 method: "GET",
                 url: "/Project/GetAllSalesPerson",
                 success: function (data) {
-                    console.log(data);
+                  //  console.log(data);
 
                     $(data).each(function () {
                         $("#ddlSalesPersonName").append($("<option></option>").val(this.keyID).html(this.keyName));
@@ -609,6 +619,59 @@ $(document).ready(function(){
                 error: function () { }
             })
         }
+        function GetProjectData() {
+            //$("#custName").val();
+            //$("#txtProjectName").val();
+            //$("#txtProjectID").val();
+            //$("#ddlProjectStatus").val("1801");
+            //$("#startDate ").val();
+            //$("#endDate ").val();
+            //$("#ddlLocationGroup").val();
+            //$("#ddlStateName").val();
+            //$("#ddlSalesPersonName").val();
+            //$("#ddlProjectCategory").val();          
+            //$("#ddlProjectType").val("4652");
+            //$("#ddlSubDomain").val();
+            //$("#ddlTimeSheetRepresentative").val();
+            //$("#ddlTimesheetType").val();
+            //$("#ddlPracticeType").val();
+            //$("#ddlRecruiter").val("10225");
+            //$("#ddlInvoiceGroup").val();
+            //$("input[name='IsVmsTimeSheet']:checked").val();
+
+            $.ajax({
+                method: "GET",
+                url: "/ProjectApi/GetProjectDataList?Id=32138er",
+                success: function (data) {
+                    data = JSON.parse(data.Project);
+                    console.log(data);
+                    $("#custName").val(data[0].Customer_Name);
+                    $("#txtProjectName").val(data[0].Project_Name);
+                    $("#txtProjectID").val(data[0].Project_Id);
+                    $("#ddlProjectStatus").val(data[0].Projectstatus);
+                    $("#startDate").val(data[0].ProjectStartDate);
+                    $("#endDate").val(data[0].ProjectEndDate);
+                    $("#ddlLocationGroup").val(data[0].LocationGroup);
+                    $("#ddlStateName").val(data[0].State_Name);
+                    $("#ddlSalesPersonName").val(data[0].SalesPersonName);
+                    $("#ddlProjectCategory").val(data[0].ProjectCategory);
+                    $("#ddlProjectType").val(data[0].Project_Type);
+                    $("#ddlSubDomain").val(data[0].Sub_Domain);
+                    $("#ddlTimeSheetRepresentative").val(data[0].TimeSheetRepresentative);
+                    $("#ddlTimesheetType").val(data[0].TimesheetType);
+                    $("#ddlPracticeType").val(data[0].PracticeType);
+                    $("#ddlRecruiter").val(data[0].Recruiter);
+                    $("#ddlInvoiceGroup").val(data[0].InvoiceGroup);
+                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].IsVmsTimeSheet);
+                    //$(data).each(function () {
+                    //    $("#custName").append($(" ").val(this.keyID).html(this.keyName));
+                    //});
+                },
+                error: function () { }
+            })
+        }
+
+
 
     </script>
 }

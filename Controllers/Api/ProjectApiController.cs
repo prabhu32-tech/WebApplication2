@@ -139,13 +139,13 @@ namespace WebApplication2.Controllers.Api
             return Ok(pro);
         }
 
-        //[HttpGet]
-        //[Route("ProjectApi/GetProjectDataList")]
-        //public IHttpActionResult ProjecDatatList()
-        //{
-        //    //DataTable objRepo = new DataTable();
-        //    //var pro = objRepo.GetProjectData(project_Id);
-        //    //return Ok(pro);
-        //}
+        [HttpGet]
+        [Route("ProjectApi/GetProjectDataList")]
+        public IHttpActionResult ProjecDatatList(string Id)
+        {
+            DataTable objRepo = new DataTable();
+            var pro = objRepo.GetProjectData(Id);
+            return Ok(pro);
+        }
     }
 }

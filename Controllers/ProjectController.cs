@@ -122,9 +122,10 @@ namespace WebApplication2.Controllers
         }
         public ActionResult Edit(string Id)
         {
-            Repository.Common sbd = new Repository.Common();
-            //var xyz = sbd.GetProjectList().Find(Project => Project.Project_Id == Id);
-            return View(sbd.GetProjectList().Find(Project=> Project.Project_Id == Id));
+            //var result = new Repository.DataTable().GetProjectData(Id);
+           // Repository.DataTable sbd = new Repository.DataTable();
+           // var xyz = sbd.GetProjectData(Id).Find(Project => Project.Project_Id == Id);
+            return View();
             //string _data = "";
             //con.Open();
             //SqlCommand cmd = new SqlCommand("Project_Edit_Prabhu_Training", con);
@@ -151,8 +152,8 @@ namespace WebApplication2.Controllers
 
             try
             {
-                Repository.Common sbd = new Repository.Common();
-                sbd.GetProjectList();                                                        
+                Repository.DataTable sbd = new Repository.DataTable();
+                sbd.GetProjectData(Project_Id);                                                        
                 return RedirectToAction("GetList");
             }
             catch

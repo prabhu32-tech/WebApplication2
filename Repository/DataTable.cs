@@ -61,15 +61,16 @@ namespace WebApplication2.Repository
 
         }
 
-        public string GetProjectData(string project_Id) 
+        public List<Project> GetProjectData(string Id) 
         {
             DataSet ds = new DataSet();
-            //List<Project> SelectListNew = new List<Project>();
+            List<Project> SelectListNew = new List<Project>();
             Connection();
-            SqlCommand cmd = new SqlCommand("Project_Edit_Prabhu_Training", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@ProjectId", project_Id);
             con.Open();
+            SqlCommand cmd = new SqlCommand("Project_Edit1_Prabhu_Training", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@ProjectId", Id);
+
             using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
                 da.Fill(ds);
@@ -97,14 +98,12 @@ namespace WebApplication2.Repository
                     obj.IsVmsTimeSheet = Convert.ToString(ds.Tables[0].Rows[i]["IsVmsTimeSheet"]);
                     obj.PracticeType = Convert.ToString(ds.Tables[0].Rows[i]["PracticeType"]);
                     obj.Recruiter = Convert.ToString(ds.Tables[0].Rows[i]["Recruiter"]);
-                   // SelectListNew.Add(obj);
+                    SelectListNew.Add(obj);
                 }
             }
 
-            return "Done";
+            return SelectListNew;
         }
 
-
-    
     }
 }
