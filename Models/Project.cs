@@ -23,7 +23,7 @@ namespace WebApplication2.Models
         [Display(Name = "Project Start Date")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]      
         [DataType(DataType.Date)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yy}")]
         public string ProjectStartDate { get; set; }
 
         [Display(Name = "Project End Date")]
