@@ -3,7 +3,7 @@
     ViewBag.Title = "Edit Project";
 }
 
-<h2>AddProject</h2>
+<h2>Edit</h2>
 
 
 <form>
@@ -20,12 +20,12 @@
         </div>
         <div class="form-group">
             <label for="txtProjectID">Project Id</label>
-            <input type="text" id="txtProjectID" class="form-control" />
+            <input type="text" id="txtProjectID" class="form-control "/>
         </div>
 
         <div class="form-group">
             <label for="startDate">Start Date</label>
-            <input type="date" id="startDate" class="form-control">
+            <input type="date" id="startDate" class="form-control" >
 
         </div>
         <div class="form-group">
@@ -111,7 +111,7 @@
         <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
         <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>
     </div>
-    <input type="button" class="btn-primary" value="Save" id="btnSave" />
+    <input type="button" class="btn-primary" value="Update" id="btnSave" />
 </form>
 
 @section scripts{
@@ -144,6 +144,8 @@
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
+                    alert("Data Updated")
+
                 }
 
             });
@@ -435,7 +437,7 @@
             console.log(Project);
             $.ajax({
                 method: "POST",
-                url: "/Project/ProjectAdd",
+                url: "/Project/ProjectUpdate",
                 dataType: "json",
                data: Project,
                 success: function () { },
@@ -619,53 +621,35 @@
                 error: function () { }
             })
         }
-        function GetProjectData() {
-            //$("#custName").val();
-            //$("#txtProjectName").val();
-            //$("#txtProjectID").val();
-            //$("#ddlProjectStatus").val("1801");
-            //$("#startDate ").val();
-            //$("#endDate ").val();
-            //$("#ddlLocationGroup").val();
-            //$("#ddlStateName").val();
-            //$("#ddlSalesPersonName").val();
-            //$("#ddlProjectCategory").val();          
-            //$("#ddlProjectType").val("4652");
-            //$("#ddlSubDomain").val();
-            //$("#ddlTimeSheetRepresentative").val();
-            //$("#ddlTimesheetType").val();
-            //$("#ddlPracticeType").val();
-            //$("#ddlRecruiter").val("10225");
-            //$("#ddlInvoiceGroup").val();
-            //$("input[name='IsVmsTimeSheet']:checked").val();
+        function GetProjectData() {          
 
             $.ajax({
                 method: "GET",
-                url: "/ProjectApi/GetProjectDataList?Id=32138er",
+                url: "/ProjectApi/GetProjectDataList?Id=Prabhu_123",
                 success: function (data) {
-                    data = JSON.parse(data.Project);
+                    //data = JSON.parse(data.Project);
                     console.log(data);
-                    $("#custName").val(data[0].Customer_Name);
-                    $("#txtProjectName").val(data[0].Project_Name);
-                    $("#txtProjectID").val(data[0].Project_Id);
-                    $("#ddlProjectStatus").val(data[0].Projectstatus);
-                    $("#startDate").val(data[0].ProjectStartDate);
-                    $("#endDate").val(data[0].ProjectEndDate);
-                    $("#ddlLocationGroup").val(data[0].LocationGroup);
-                    $("#ddlStateName").val(data[0].State_Name);
-                    $("#ddlSalesPersonName").val(data[0].SalesPersonName);
-                    $("#ddlProjectCategory").val(data[0].ProjectCategory);
-                    $("#ddlProjectType").val(data[0].Project_Type);
-                    $("#ddlSubDomain").val(data[0].Sub_Domain);
-                    $("#ddlTimeSheetRepresentative").val(data[0].TimeSheetRepresentative);
-                    $("#ddlTimesheetType").val(data[0].TimesheetType);
-                    $("#ddlPracticeType").val(data[0].PracticeType);
-                    $("#ddlRecruiter").val(data[0].Recruiter);
-                    $("#ddlInvoiceGroup").val(data[0].InvoiceGroup);
-                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].IsVmsTimeSheet);
-                    //$(data).each(function () {
-                    //    $("#custName").append($(" ").val(this.keyID).html(this.keyName));
-                    //});
+                    console.log(data[0].projectEndDate);
+                    console.log(data[0].projectStartDate);
+                    $("#custName").val(data[0].customer_Name);
+                    $("#txtProjectName").val(data[0].project_Name);
+                    $("#txtProjectID").val(data[0].project_Id);
+                    $("#ddlProjectStatus").val(data[0].project_Status);
+                    $("#startDate").val(data[0].projectStartDate);
+                    $("#endDate").val(data[0].projectEndDate);
+                    $("#ddlLocationGroup").val(data[0].locationGroup);
+                    $("#ddlStateName").val(data[0].state_Name);
+                    $("#ddlSalesPersonName").val(data[0].salesPersonName);
+                    $("#ddlProjectCategory").val(data[0].projectCategory);
+                    $("#ddlProjectType").val(data[0].project_Type);
+                    $("#ddlSubDomain").val(data[0].sub_Domain);
+                    $("#ddlTimeSheetRepresentative").val(data[0].timeSheetRepresentative);
+                    $("#ddlTimesheetType").val(data[0].timesheetType);
+                    $("#ddlPracticeType").val(data[0].practiceType);
+                    $("#ddlRecruiter").val(data[0].recruiter);
+                    $("#ddlInvoiceGroup").val(data[0].invoiceGroup);
+                    $("input[name='IsVmsTimeSheet']:checked").val(data[0].isVmsTimeSheet);
+                    
                 },
                 error: function () { }
             })

@@ -22,6 +22,14 @@ namespace WebApplication2.Controllers.Api
             return Ok(dataTable);
         }
 
+        [HttpPost]
+        [Route("Project/ProjectUpdate")]
+        public IHttpActionResult UpdateProject(Project pc)
+        {
+            DataTable objRepo = new DataTable();
+            var dataTable = objRepo.UpdateTable(pc);
+            return Ok(dataTable);
+        }
 
 
         [HttpGet]

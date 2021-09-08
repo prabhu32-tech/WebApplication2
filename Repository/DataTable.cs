@@ -105,5 +105,43 @@ namespace WebApplication2.Repository
             return SelectListNew;
         }
 
+        public string UpdateTable(Project model)
+        {
+            Connection();
+            SqlCommand com = new SqlCommand("Project_Update_Prabhu_Training", con);
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@CustomerName", model.Customer_Name);
+            com.Parameters.AddWithValue("@ProjectName", model.Project_Name);
+            com.Parameters.AddWithValue("@ProjectId", model.Project_Id);
+            com.Parameters.AddWithValue("@StartDate", model.ProjectStartDate);
+            com.Parameters.AddWithValue("@EndDate", model.ProjectEndDate);
+            com.Parameters.AddWithValue("@ProjectStatus", model.Project_Status);
+            com.Parameters.AddWithValue("@LocationGroup", model.LocationGroup);
+            com.Parameters.AddWithValue("@PayrollState", model.State_Name);
+            com.Parameters.AddWithValue("@SalesPerson", model.SalesPersonName);
+            com.Parameters.AddWithValue("@ProjectCategory", model.ProjectCategory);
+            com.Parameters.AddWithValue("@ProjectType", model.Project_Type);
+            com.Parameters.AddWithValue("@SubDomain", model.Sub_Domain);
+            com.Parameters.AddWithValue("@TimeSheetRepresentative", model.TimeSheetRepresentative);
+            com.Parameters.AddWithValue("@TimesheetType", model.TimesheetType);
+            com.Parameters.AddWithValue("@PracticeType", model.PracticeType);
+            com.Parameters.AddWithValue("@Recruiter", model.Recruiter);
+            com.Parameters.AddWithValue("@ClientInvoiceGroup", model.InvoiceGroup);
+            com.Parameters.AddWithValue("@IsVmsTimeSheet", model.IsVmsTimeSheet);
+
+            con.Open();
+            int i = com.ExecuteNonQuery();
+            con.Close();
+            if (i >= 1)
+            {
+                return "Form Updated";
+            }
+            else
+            {
+                return "Please Fill Valid Information";
+            }
+
+        }
+
     }
 }

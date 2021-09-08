@@ -113,7 +113,7 @@
         <input class="check" type="radio" id="isVmsYes" name="IsVmsTimeSheet" value="Yes"><label for="isVmsYes">Yes</label>
         <input class="check" type="radio" id="isVmsNo" name="IsVmsTimeSheet" value="No"><label for="isVmsNo">No</label>       
     </div>
-    <input type="submit" class="btn-primary" value="Save" id="btnSave" />
+    <input type="button" class="btn-primary" value="Save" id="btnSave" />
 </form>
 
 @section scripts{
@@ -137,18 +137,42 @@ $(document).ready(function(){
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
-                    // reset_form(event);
-                    alert("Form Submitted")
+                    
+                    alert("Form Submitted").reset_form()
 
-                     function reset_form(event) {
+                     //function reset_form(event) {
 
-                      $("#myform").reset();
-                       }
+                     // $("#myform").reset();
+                     //  }
                     
                 }
 
             });
+});
+
+        $(document).on('input', 'input[type=text]', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'custName') {
+                CustNameValidation();
+            }
         });
+        $(document).on('change', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'ddlProjectCategory') {
+                ProjectCategoryValidation();
+            }
+        });
+        $(document).on('input', 'input[type=date]', (event) => {
+            const $ctrl = event.target;
+            const ctrlId = $($ctrl).attr('id');
+            if (ctrlId === 'startDate') {
+                StartDateValidation();
+            }
+        });
+
+
         function clearMessageJQ(ele) {
             $(ele).siblings('span.error').remove();
         }

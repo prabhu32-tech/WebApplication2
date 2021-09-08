@@ -21,13 +21,16 @@ namespace WebApplication2.Models
         public string Project_Id { get; set; }
 
         [Display(Name = "Project Start Date")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]      
         [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public string ProjectStartDate { get; set; }
 
         [Display(Name = "Project End Date")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]
+       // [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese provide valid Date ")]
+        
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public string ProjectEndDate { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "**Plese select Status ")]
