@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <label for="txtProjectID">Project Id</label>
-            <input type="text" id="txtProjectID" class="form-control "/>
+            <input type="text" id="txtProjectID" class="form-control" readonly/>
         </div>
 
         <div class="form-group">
@@ -625,7 +625,7 @@
 
             $.ajax({
                 method: "GET",
-                url: "/ProjectApi/GetProjectDataList?Id=Prabhu_123",
+                url: "/ProjectApi/GetProjectDataList?Id=Fitness15402",
                 success: function (data) {
                     //data = JSON.parse(data.Project);
                     console.log(data);
