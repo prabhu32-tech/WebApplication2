@@ -120,7 +120,6 @@
 
     <script>
    
-
 $(document).ready(function(){
     BindProjectStatusList();
     BindLocationGroup();
@@ -138,7 +137,14 @@ $(document).ready(function(){
             $("#btnSave").on("click", function () {
                 if (IsValidate()) {
                     SaveData();
-                   // reset_form(event);
+                    // reset_form(event);
+                    alert("Form Submitted")
+
+                     function reset_form(event) {
+
+                      $("#myform").reset();
+                       }
+                    
                 }
 
             });
@@ -437,10 +443,7 @@ $(document).ready(function(){
                 error: function () {}
             });
         }
-        //function reset_form(event) {
-
-        //    document.getElementById("myform").reset();
-        //}
+       
 
         function BindProjectStatusList() {
             $.ajax({
