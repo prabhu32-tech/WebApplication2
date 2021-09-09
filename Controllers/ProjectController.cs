@@ -145,10 +145,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Edit(string Project_Id, Project smodel)
         {
-            //Connection();
-            //SqlCommand com = new SqlCommand("Get_list_Prabhu_Training", con);
-            //com.CommandType = CommandType.StoredProcedure;
-            //com.Parameters.AsParallel("@CustomerName", model.Project.Customer_Name);
+           
 
             try
             {

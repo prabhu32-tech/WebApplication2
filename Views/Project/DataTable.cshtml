@@ -2,24 +2,25 @@
 @{ ViewBag.Title = "DataTable"; }
 
 <h2>Projects List</h2>
-<div class="form-group col-md-3">
-    <label>Project Type </label>
-    <select id="ddlProjectType" class="form-control">
-    </select>
-</div>
-<div class="form-group col-md-3">
-    <label>Practice Type</label>
-    <select id="ddlPracticeType" class="form-control">
-        <option>Select Practice Type </option>
-    </select>
-</div>
-<div class="form-group col-md-3">
-    <label for="custName">Search</label>
-    <input type="text" id="custName" class="form-control" />
+<form>
+    <div class="form-group col-md-3">
+        <label>Project Type </label>
+        <select id="ddlProjectType" class="form-control">
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        <label>Practice Type</label>
+        <select id="ddlPracticeType" class="form-control">
+            <option>Select Practice Type </option>
+        </select>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="custName">Search</label>
+        <input type="text" id="custName" class="form-control" />
+
+    </div>
     <input type="button" class="btn-primary" value="Submit" id="btnSubmit" />
-</div>
-
-
+</form>
 
 <table id="prjList" class="table-bordered table-striped" data-order='[[ 3, "desc" ]]'>
     <thead>
@@ -92,10 +93,13 @@
 
         $(document).ready(function () {
             $("#prjList").DataTable({
+                //searching: false,
                 ajax: {
                     url: "/ProjectApi/GetProjectList",
                     dataSrc: ""
                 },
+           
+
                 columns: [
 
                     {
@@ -159,26 +163,85 @@
                         }
                     },
                 ],
-                //{
-                //    //delete button creation
-                //    render: function (data, type, row) {
-                //        return createButton('delete', row.id);
-                //    }
-                //}
-
-                //"searching": false,
-                //"paging": true,
-                //"info": true,
-                //"language": {
-                //    "emptyTable": "No data available"
-                // },
+               
 
             });
-            function createButton(buttonType, rowID) {
-                var buttonText = buttonType == "edit" ? "Edit" : "Delete";
-                return '<button class="' + buttonType + '" type="button">' + buttonText + '</button>';
+
+            $("#btnSubmit").on("click", function () {
+
+                FindData();
+            })
+
+            function FindData()
+            {
+                let Project = {
+                    Project_Type: "",
+                    PracticeType: "",
+                    Customer_Name: "",
+                };
+                Project.Project_Type = $("#ddlProjectType").val();
+                Project.PracticeType = $("#ddlPracticeType").val();
+                Project.Customer_Name = $("#custName").val();
+
+
+                console.log(Project);
+                $.ajax({
+                    method: "GET",
+                    url: "/ProjectApi/FindProject",
+                    data: Project,
+                    success: function () { },
+                    error: function () { }
+                });
+                
+                
+
             }
-        });</script>
+            //var table = $('#prjList').DataTable();
+
+            
+
+            //table
+            //    .columns('Customer_Name')
+            //    .search('Important')
+            //    .draw();
+
+
+            //$('#custName').on('keyup', function () {
+            //    table.search(this.value).draw();
+            //});
+            //$('#ddlPracticeType').on('change', function () {
+            //    table.search(this.value).draw();
+            //});
+            //$('#ddlProjectType').on('change', function () {
+            //    table.search(this.value).draw();
+            //});
+
+            //table.columns('.select-filter').every(function () {
+            //    var that = this;
+
+            //    // Create the select list and search operation
+            //    var select = $('<select />')
+            //        .appendTo(
+            //            this.footer()
+            //        )
+            //        .on('change', function () {
+            //            that
+            //                .search($(this).val())
+            //                .draw();
+            //        });
+
+            //    // Get the search data for the first column and add to the select list
+            //    this
+            //        .cache('search')
+            //        .sort()
+            //        .unique()
+            //        .each(function (d) {
+            //            select.append($('<option value="' + d + '">' + d + '</option>'));
+            //        });
+           // });
+            
+        });
+    </script>
 
 }
 
